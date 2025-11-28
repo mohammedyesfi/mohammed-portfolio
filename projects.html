@@ -10,7 +10,7 @@
     <!-- Header with Navigation -->
     <header>
         <h1>My Projects</h1>
-        <p>Things I'm Building and Learning</p>
+        <p>Interactive Web Development Portfolio</p>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -32,130 +32,345 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Upcoming Projects Section -->
-        <section id="upcoming-projects">
-            <h2>Upcoming Projects</h2>
-            <p>I'm currently learning and building my skills. Here are some projects I'm planning to work on:</p>
+        <!-- Projects Header -->
+        <section class="projects-intro">
+            <h2>My Web Development Projects</h2>
+            <p>Here are some interactive projects I've built to demonstrate my skills in JavaScript, DOM manipulation, and modern web development.</p>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="projects-grid">
+            <!-- Project 1: Quote Generator -->
+            <div class="project-card" data-category="javascript">
+                <div class="project-header">
+                    <h3>Random Quote Generator</h3>
+                    <span class="project-status completed">Completed</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container">
+                        <div id="quote-preview" class="quote-preview">
+                            <p class="quote-text">"The only way to do great work is to love what you do."</p>
+                            <p class="quote-author">— Steve Jobs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>A dynamic quote generator that displays random inspirational quotes with smooth animations and local storage.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">DOM Manipulation</span>
+                        <span class="tech-tag">CSS Animations</span>
+                        <span class="tech-tag">Local Storage</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Random quote selection</li>
+                        <li>Smooth animations</li>
+                        <li>Quote counter</li>
+                        <li>Responsive design</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openQuoteDemo()">Live Demo</button>
+                    <a href="https://github.com/mohammedyesfi/mohammed-portfolio" class="demo-btn secondary" target="_blank">Source Code</a>
+                </div>
+            </div>
+
+            <!-- Project 2: JavaScript Playground -->
+            <div class="project-card" data-category="javascript">
+                <div class="project-header">
+                    <h3>JavaScript Playground</h3>
+                    <span class="project-status completed">Completed</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container playground-preview">
+                        <div class="playground-demo">
+                            <button class="mini-btn" onclick="showMiniAlert()">Alert</button>
+                            <button class="mini-btn" onclick="changeMiniText()">Change Text</button>
+                            <p id="mini-message">Click the buttons!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>An interactive playground demonstrating various JavaScript features including event handling, DOM manipulation, and state management.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Event Handling</span>
+                        <span class="tech-tag">DOM Manipulation</span>
+                        <span class="tech-tag">CSS Transitions</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Interactive buttons</li>
+                        <li>Text manipulation</li>
+                        <li>Counter functionality</li>
+                        <li>Toggle effects</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openPlaygroundDemo()">Live Demo</button>
+                    <a href="https://github.com/mohammedyesfi/mohammed-portfolio" class="demo-btn secondary" target="_blank">Source Code</a>
+                </div>
+            </div>
+
+            <!-- Project 3: Calculator App -->
+            <div class="project-card" data-category="javascript">
+                <div class="project-header">
+                    <h3>Calculator App</h3>
+                    <span class="project-status completed">Completed</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container calculator-preview">
+                        <div class="calculator-demo">
+                            <div class="calc-display">0</div>
+                            <div class="calc-buttons">
+                                <button class="calc-btn">7</button>
+                                <button class="calc-btn">8</button>
+                                <button class="calc-btn">9</button>
+                                <button class="calc-btn op">+</button>
+                                <button class="calc-btn">4</button>
+                                <button class="calc-btn">5</button>
+                                <button class="calc-btn">6</button>
+                                <button class="calc-btn op">-</button>
+                                <button class="calc-btn">1</button>
+                                <button class="calc-btn">2</button>
+                                <button class="calc-btn">3</button>
+                                <button class="calc-btn op">×</button>
+                                <button class="calc-btn zero">0</button>
+                                <button class="calc-btn">.</button>
+                                <button class="calc-btn op">=</button>
+                                <button class="calc-btn op">÷</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>A fully functional calculator with basic arithmetic operations, clean UI, and keyboard support.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Event Listeners</span>
+                        <span class="tech-tag">CSS Grid</span>
+                        <span class="tech-tag">Array Methods</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Basic arithmetic operations</li>
+                        <li>Keyboard support</li>
+                        <li>Error handling</li>
+                        <li>Responsive design</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openCalculatorDemo()">Live Demo</button>
+                    <a href="https://github.com/mohammedyesfi/mohammed-portfolio" class="demo-btn secondary" target="_blank">Source Code</a>
+                </div>
+            </div>
+
+            <!-- Project 4: Todo List App -->
+            <div class="project-card" data-category="javascript">
+                <div class="project-header">
+                    <h3>Todo List App</h3>
+                    <span class="project-status in-progress">In Progress</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container todo-preview">
+                        <div class="todo-demo">
+                            <div class="todo-input">
+                                <input type="text" placeholder="Add a task..." readonly>
+                                <button class="add-btn">+</button>
+                            </div>
+                            <div class="todo-list">
+                                <div class="todo-item">
+                                    <span class="todo-text">Learn JavaScript</span>
+                                    <button class="delete-btn">×</button>
+                                </div>
+                                <div class="todo-item completed">
+                                    <span class="todo-text">Build portfolio</span>
+                                    <button class="delete-btn">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>A task management application with add, delete, and complete functionality using local storage.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Local Storage</span>
+                        <span class="tech-tag">Array Methods</span>
+                        <span class="tech-tag">CRUD Operations</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Add/delete tasks</li>
+                        <li>Mark as complete</li>
+                        <li>Local storage</li>
+                        <li>Responsive design</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openTodoDemo()">Live Demo</button>
+                    <a href="https://github.com/mohammedyesfi/mohammed-portfolio" class="demo-btn secondary" target="_blank">Source Code</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Demos Section (Hidden by default) -->
+        <section id="full-demos" style="display: none;">
+            <!-- Quote Generator Full Demo -->
+            <div id="quote-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>Quote Generator - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
+                </div>
+                <div class="demo-content">
+                    <div class="full-quote-generator">
+                        <div class="quote-display-large">
+                            <p id="full-quote-text">"The only way to do great work is to love what you do."</p>
+                            <p id="full-quote-author">— Steve Jobs</p>
+                            <span id="full-quote-category">#work</span>
+                        </div>
+                        <button id="full-new-quote" class="quote-btn-large">✨ Get New Inspiration</button>
+                        <div class="quote-stats-large">
+                            <p>Quotes shown: <span id="full-quote-count">0</span></p>
+                            <p>Your favorite quote will be saved!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="project-list">
-                <div class="project-card">
-                    <h3>Personal Portfolio Website</h3>
-                    <p><strong>Status:</strong> In Progress ✅</p>
-                    <p>This very website! I'm building it from scratch using HTML and CSS.</p>
-                    <p><strong>Technologies:</strong> HTML5, CSS3, Flexbox, Responsive Design</p>
+            <!-- JavaScript Playground Full Demo -->
+            <div id="playground-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>JavaScript Playground - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
                 </div>
-                
-                <div class="project-card">
-                    <h3>JavaScript Calculator</h3>
-                    <p><strong>Status:</strong> Planning Phase 📝</p>
-                    <p>A simple calculator that can perform basic math operations using JavaScript.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, DOM Manipulation</p>
+                <div class="demo-content">
+                    <div class="full-playground">
+                        <div class="playground-buttons-large">
+                            <button id="full-alert-button" class="demo-btn-large">Click Me for Alert! 🚨</button>
+                            <button id="full-change-button" class="demo-btn-large">Change the Message ✨</button>
+                            <button id="full-toggle-button" class="demo-btn-large">Toggle Secret Message 🔄</button>
+                            <button id="full-counter-button" class="demo-btn-large">Click Counter: <span id="full-click-count">0</span> 🔢</button>
+                        </div>
+                        
+                        <div class="playground-results-large">
+                            <p id="full-message">This message will change when you click the button!</p>
+                            <p id="full-secret-message" style="display: none;">🎉 Surprise! You found the secret message! JavaScript is awesome! 🎉</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="project-card">
-                    <h3>Weather App</h3>
-                    <p><strong>Status:</strong> Coming Soon 🚀</p>
-                    <p>An app that shows current weather using a weather API and JavaScript.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, API Integration</p>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Todo List Application</h3>
-                    <p><strong>Status:</strong> Coming Soon 🚀</p>
-                    <p>A simple task manager to practice JavaScript and local storage.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Local Storage</p>
-                </div>
+            </div>
 
-                <div class="project-card">
-                    <h3>Responsive Blog Layout</h3>
-                    <p><strong>Status:</strong> Coming Soon 🚀</p>
-                    <p>A beautiful, responsive blog layout using CSS Grid and Flexbox.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS Grid, Flexbox, Responsive Design</p>
+            <!-- Calculator Full Demo -->
+            <div id="calculator-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>Calculator App - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
                 </div>
-
-                <div class="project-card">
-                    <h3>Interactive Photo Gallery</h3>
-                    <p><strong>Status:</strong> Coming Soon 🚀</p>
-                    <p>A dynamic photo gallery with filtering and lightbox features.</p>
-                    <p><strong>Technologies:</strong> HTML, CSS, JavaScript, Event Handling</p>
+                <div class="demo-content">
+                    <div class="full-calculator">
+                        <div class="calculator-display" id="calc-display">0</div>
+                        <div class="calculator-buttons">
+                            <button class="calc-btn-large" onclick="clearCalculator()">C</button>
+                            <button class="calc-btn-large" onclick="deleteLast()">⌫</button>
+                            <button class="calc-btn-large op" onclick="appendToDisplay('/')">/</button>
+                            <button class="calc-btn-large op" onclick="appendToDisplay('*')">×</button>
+                            
+                            <button class="calc-btn-large" onclick="appendToDisplay('7')">7</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('8')">8</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('9')">9</button>
+                            <button class="calc-btn-large op" onclick="appendToDisplay('-')">-</button>
+                            
+                            <button class="calc-btn-large" onclick="appendToDisplay('4')">4</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('5')">5</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('6')">6</button>
+                            <button class="calc-btn-large op" onclick="appendToDisplay('+')">+</button>
+                            
+                            <button class="calc-btn-large" onclick="appendToDisplay('1')">1</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('2')">2</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('3')">3</button>
+                            <button class="calc-btn-large equals" onclick="calculateResult()" rowspan="2">=</button>
+                            
+                            <button class="calc-btn-large zero" onclick="appendToDisplay('0')">0</button>
+                            <button class="calc-btn-large" onclick="appendToDisplay('.')">.</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+            <!-- JavaScript Playground Full Demo -->
+            <div id="playground-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>JavaScript Playground - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
+                </div>
+                <div class="demo-content">
+                    <!-- We'll add the full playground here -->
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills">
-            <h2>Technologies I'm Learning</h2>
-            <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
-                <li>Git & GitHub</li>
-                <li>Responsive Design</li>
-                <li>Flexbox</li>
-                <li>CSS Grid</li>
-                <li>DOM Manipulation</li>
-            </ul>
-        </section>
-
-        <!-- Learning Path Section -->
-        <section id="learning-path">
-            <h2>My Learning Journey</h2>
-            <div class="project-card">
-                <h3>Current Focus</h3>
-                <p>I'm currently mastering the fundamentals of web development:</p>
-                <ul>
-                    <li>✅ <strong>HTML</strong> - Semantic structure and accessibility</li>
-                    <li>✅ <strong>CSS</strong> - Styling, layouts, and responsive design</li>
-                    <li>🔄 <strong>JavaScript</strong> - Interactivity and dynamic content</li>
-                    <li>📝 <strong>Git</strong> - Version control and collaboration</li>
-                </ul>
-            </div>
-        </section>
-        <!-- Interactive JavaScript Projects -->
-        <section id="interactive-projects">
-            <h2>Interactive JavaScript Projects</h2>
-            <p>Here are some interactive features I've built using JavaScript:</p>
-            
-            <!-- Quote Generator Project -->
-            <div class="project-card">
-                <h3>Random Quote Generator</h3>
-                <p><strong>Status:</strong> Completed ✅</p>
-                <p>A dynamic quote generator that displays inspirational quotes with beautiful animations.</p>
-                <p><strong>Technologies:</strong> JavaScript, DOM Manipulation, CSS Animations</p>
-                
-                <div class="project-demo">
-                    <h4>Live Demo:</h4>
-                    <div class="quote-container">
-                        <div id="quote-display">
-                            <p class="quote-text">"The only way to do great work is to love what you do."</p>
-                        </div>
-                        <button id="new-quote" class="quote-btn">✨ New Quote</button>
-                        <div class="quote-stats">
-                            <p>Quotes shown: <span id="quote-count">0</span></p>
-                        </div>
+            <h2>Technologies I Use</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Responsive Design</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- JavaScript Playground Project -->
-            <div class="project-card">
-                <h3>JavaScript Playground</h3>
-                <p><strong>Status:</strong> Completed ✅</p>
-                <p>An interactive playground demonstrating various JavaScript features and DOM manipulation.</p>
-                <p><strong>Technologies:</strong> JavaScript, Event Handling, DOM Manipulation</p>
                 
-                <div class="project-demo">
-                    <h4>Live Demo:</h4>
-                    <div class="demo-buttons">
-                        <button id="alert-button" class="demo-btn">Click Me for Alert! 🚨</button>
-                        <button id="change-text-button" class="demo-btn">Change the Message ✨</button>
-                        <button id="toggle-button" class="demo-btn">Toggle Secret Message 🔄</button>
-                        <button id="counter-button" class="demo-btn">Click Counter: <span id="click-count">0</span> 🔢</button>
+                <div class="skill-category">
+                    <h3>Tools & Methods</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">Git & GitHub</span>
+                        <span class="skill-tag">Flexbox</span>
+                        <span class="skill-tag">CSS Grid</span>
+                        <span class="skill-tag">DOM Manipulation</span>
                     </div>
-                    
-                    <div class="demo-results">
-                        <p id="message">This message will change when you click the button!</p>
-                        <p id="secret-message" style="display: none;">🎉 Surprise! You found the secret message! JavaScript is awesome! 🎉</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Coming Soon</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag future">React</span>
+                        <span class="skill-tag future">Node.js</span>
+                        <span class="skill-tag future">MongoDB</span>
+                        <span class="skill-tag future">APIs</span>
                     </div>
                 </div>
             </div>
