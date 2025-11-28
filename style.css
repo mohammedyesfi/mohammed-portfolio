@@ -5,7 +5,7 @@
 
 /* === CSS VARIABLES FOR CONSISTENCY === */
 :root {
-    /* Color Palette */
+    /* Light Theme (Default) */
     --primary: #2563eb;       /* Professional blue */
     --primary-dark: #1d4ed8;
     --primary-light: #3b82f6;
@@ -54,6 +54,20 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* Dark Theme Variables */
+[data-theme="dark"] {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --primary-light: #60a5fa;
+    --secondary: #f59e0b;
+    --secondary-dark: #d97706;
+    --text-dark: #f9fafb;
+    --text-light: #d1d5db;
+    --background: #111827;
+    --surface: #1f2937;
+    --border: #374151;
+}
+
 /* === BASE STYLES === */
 * {
     margin: 0;
@@ -67,13 +81,14 @@ body {
     color: var(--text-dark);
     background-color: var(--background);
     font-weight: 400;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* === IMPROVED HEADER & NAVIGATION === */
 header {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: var(--space-12) 0; /* ← Increased to 3rem (48px) */
+    padding: var(--space-12) 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -131,7 +146,7 @@ nav a {
     display: block;
     text-align: center;
     background-color: transparent;
-    font-size: var(--text-base); /* ← Increased to base size (16px) */
+    font-size: var(--text-base);
     letter-spacing: 0.025em;
 }
 
@@ -139,6 +154,39 @@ nav a:hover {
     background-color: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
+}
+
+/* === DARK MODE TOGGLE === */
+.theme-toggle {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.theme-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Dark mode specific styles for the toggle button */
+[data-theme="dark"] .theme-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* === POLISHED HERO SECTION === */
@@ -150,6 +198,11 @@ nav a:hover {
     display: flex;
     align-items: center;
     position: relative;
+}
+
+/* Dark mode hero adjustments */
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
 }
 
 .hero-content {
@@ -251,13 +304,12 @@ nav a:hover {
 }
 
 /* Enhanced Profile Image */
-/* Enhanced Profile Image */
 .profile-photo {
     width: 280px;
     height: 280px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center 7%; /* Key fix for head positioning */
+    object-position: center 7%;
     border: 4px solid rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow-lg);
     transition: transform 0.3s ease;
@@ -292,7 +344,7 @@ main {
     z-index: 1;
     background: var(--surface);
     border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    margin-top: -20px; /* ← Reduced from -40px to -20px (more space) */
+    margin-top: -20px;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
 }
 
@@ -542,71 +594,16 @@ html {
     scroll-behavior: smooth;
 }
 
-/* === RESPONSIVE DESIGN === */
-@media (max-width: 768px) {
-    /* Keep all your existing mobile styles from previous lesson */
-    /* They'll work even better with the new design system! */
-    
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--space-8);
-    }
-    
-    .hero h2 {
-        font-size: var(--text-3xl);
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-    
-    .hero-image {
-        order: -1;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        gap: var(--space-2);
-    }
-    
-    nav a {
-        width: 200px;
-        padding: var(--space-3) var(--space-4);
-    }
-    
-    main {
-        margin-top: -30px;
-        padding: var(--space-6);
-    }
-    
-    section {
-        margin: var(--space-6) 0;
-        padding: var(--space-6);
-    }
-}
-
-/* Extra small devices */
-@media (max-width: 480px) {
-    :root {
-        --text-4xl: 2rem;
-        --text-3xl: 1.75rem;
-    }
-    
-    .hero {
-        padding: var(--space-12) var(--space-4);
-    }
-    
-    main {
-        padding: var(--space-4);
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    }
-}
-
 /* === JAVASCRIPT DEMO SECTION === */
 #javascript-demo {
     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
     border: 2px solid var(--primary-light);
+}
+
+/* Dark mode JavaScript demo adjustments */
+[data-theme="dark"] #javascript-demo {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    border-color: #374151;
 }
 
 .demo-buttons {
@@ -656,4 +653,115 @@ html {
     text-align: center;
     font-weight: 600;
     margin: var(--space-4) 0 0 0;
+}
+
+/* === DARK MODE TEST SECTION === */
+#dark-mode-test {
+    background: var(--surface);
+    border: 2px solid var(--border);
+}
+
+.color-swatch {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.swatch-color {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.swatch span {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-8);
+    }
+    
+    .hero h2 {
+        font-size: var(--text-3xl);
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+    
+    nav a {
+        width: 200px;
+        padding: var(--space-3) var(--space-4);
+    }
+    
+    .theme-toggle {
+        position: static;
+        margin-top: var(--space-4);
+    }
+    
+    .theme-btn {
+        margin: 0 auto;
+    }
+    
+    main {
+        margin-top: -30px;
+        padding: var(--space-6);
+    }
+    
+    section {
+        margin: var(--space-6) 0;
+        padding: var(--space-6);
+    }
+    
+    .demo-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    :root {
+        --text-4xl: 2rem;
+        --text-3xl: 1.75rem;
+    }
+    
+    .hero {
+        padding: var(--space-12) var(--space-4);
+    }
+    
+    main {
+        padding: var(--space-4);
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    
+    .color-swatch {
+        flex-direction: column;
+        align-items: center;
+    }
 }
