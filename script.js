@@ -84,13 +84,19 @@ function increaseCounter() {
     }
 }
 
-// 8. FUNCTION TO CHANGE BACKGROUND COLOR
-function changeBackgroundColor() {
-    const colors = ["#ffebee", "#f3e5f5", "#e8eaf6", "#e3f2fd", "#e0f2f1", "#f1f8e9"];
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    document.body.style.backgroundColor = randomColor;
-    console.log("Background color changed to: " + randomColor);
+// 8. SIMPLE CALCULATOR FUNCTION
+function simpleCalculator(num1, num2, operation) {
+    if (operation === "+") {
+        return num1 + num2;
+    } else if (operation === "-") {
+        return num1 - num2;
+    } else if (operation === "*") {
+        return num1 * num2;
+    } else if (operation === "/") {
+        return num1 / num2;
+    } else {
+        return "Invalid operation";
+    }
 }
 
 // 9. PERSONALIZED GREETING FUNCTION
@@ -140,33 +146,13 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("💡 Bonus: Press the 'A' key on your keyboard!");
 });
 
-// 10. CALCULATOR FUNCTION WITH RETURN VALUE
-function calculate(operation, num1, num2) {
-    switch(operation) {
-        case "+":
-            return num1 + num2;
-        case "-":
-            return num1 - num2;
-        case "*":
-            return num1 * num2;
-        case "/":
-            return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
-        default:
-            return "Invalid operation";
-    }
-}
-
 // Test the calculator
 console.log("=== CALCULATOR ===");
-console.log("5 + 3 = " + calculate("+", 5, 3));
-console.log("10 - 4 = " + calculate("-", 10, 4));
-console.log("6 * 7 = " + calculate("*", 6, 7));
-console.log("15 / 3 = " + calculate("/", 15, 3));
-
-// 11. AUTO-RUN PERSONALIZED GREETING (Optional)
-// Uncomment the line below if you want a greeting when page loads
-// personalizedGreeting();=");
 console.log("15 + 7 = " + simpleCalculator(15, 7, "+"));
 console.log("15 - 7 = " + simpleCalculator(15, 7, "-"));
 console.log("15 * 7 = " + simpleCalculator(15, 7, "*"));
 console.log("15 / 7 = " + simpleCalculator(15, 7, "/"));
+
+// 10. AUTO-RUN PERSONALIZED GREETING (Optional)
+// Uncomment the line below if you want a greeting when page loads
+// personalizedGreeting();
