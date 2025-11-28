@@ -1020,3 +1020,23 @@ html {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* === PROJECT DEMO STYLES === */
+.project-demo {
+    background: var(--background);
+    padding: var(--space-6);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-top: var(--space-4);
+}
+
+.project-demo h4 {
+    color: var(--primary);
+    margin-bottom: var(--space-4);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: var(--space-2);
+}
+
+#interactive-projects .project-card {
+    border-left: 4px solid var(--secondary);
+}
