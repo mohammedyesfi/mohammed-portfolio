@@ -507,3 +507,48 @@ function simpleCalculator(num1, num2, operation) {
     if (operation === "/") return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
     return "Invalid operation";
 }
+// === INITIALIZE EVERYTHING === //
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("📄 Page loaded, initializing everything...");
+    
+    // Initialize theme (works on both pages)
+    initializeTheme();
+    
+    // Initialize dark mode toggle (works on both pages)
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Only initialize these if we're on the projects page OR homepage
+    const isProjectsPage = window.location.pathname.includes('projects.html') || 
+                          document.getElementById('interactive-projects');
+    
+    const isHomePage = window.location.pathname.includes('index.html') || 
+                      window.location.pathname === '/' ||
+                      document.getElementById('hobbies-container');
+    
+    // Initialize JavaScript features (now on projects page)
+    if (isProjectsPage) {
+        document.getElementById("alert-button")?.addEventListener("click", showAlert);
+        document.getElementById("change-text-button")?.addEventListener("click", changeMessage);
+        document.getElementById("toggle-button")?.addEventListener("click", toggleSecretMessage);
+        document.getElementById("counter-button")?.addEventListener("click", increaseCounter);
+        initializeQuoteGenerator();
+    }
+    
+    // Initialize homepage features
+    if (isHomePage) {
+        demonstrateLoops();
+        displayHobbies();
+        initializeContactForm();
+    }
+    
+    // Keyboard shortcut (works everywhere)
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "a" || event.key === "A") {
+            showAlert();
+        }
+    });
+    
+    console.log("✅ Everything initialized successfully!");
+});
