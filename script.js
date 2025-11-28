@@ -365,6 +365,7 @@ class ContactForm {
         if (statusElement) {
             statusElement.textContent = message;
             statusElement.className = `form-status ${type}`;
+            statusElement.style.display = 'block';
         }
     }
     
@@ -436,17 +437,33 @@ function openTodoDemo() {
     alert("Todo List demo coming soon! This shows progressive enhancement.");
 }
 
+// FIXED: Enhanced closeDemos function
 function closeDemos() {
     const fullDemos = document.getElementById('full-demos');
-    if (fullDemos) fullDemos.style.display = 'none';
+    const demos = document.querySelectorAll('.full-demo');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'none';
+    }
+    
+    // Hide all individual demo modals
+    demos.forEach(demo => {
+        demo.style.display = 'none';
+    });
+    
     currentDemo = null;
+    console.log("🔒 All demos closed");
 }
 
-// Close demo when clicking outside
+// FIXED: Enhanced click outside handler
 document.addEventListener('click', function(event) {
     const fullDemos = document.getElementById('full-demos');
-    if (fullDemos && fullDemos.style.display === 'block' && event.target === fullDemos) {
-        closeDemos();
+    
+    if (fullDemos && fullDemos.style.display === 'block') {
+        // Check if click is on the overlay background (not the modal content)
+        if (event.target === fullDemos) {
+            closeDemos();
+        }
     }
 });
 
@@ -639,8 +656,17 @@ function changeMiniText() {
 function initializeProjectsPage() {
     console.log("🎯 Projects page initialized with full demos!");
     
+    // Ensure all demos start closed
+    closeDemos();
+    
     // Add keyboard support for demos
     document.addEventListener('keydown', function(event) {
+        // Close demo with Escape key
+        if (event.key === 'Escape' && currentDemo) {
+            closeDemos();
+            return;
+        }
+        
         if (currentDemo === 'calculator') {
             // Calculator keyboard support
             if (event.key >= '0' && event.key <= '9') {
@@ -662,11 +688,6 @@ function initializeProjectsPage() {
             } else if (event.key === 'Backspace') {
                 deleteLast();
             }
-        }
-        
-        // Close demo with Escape key
-        if (event.key === 'Escape' && currentDemo) {
-            closeDemos();
         }
     });
 }
