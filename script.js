@@ -742,3 +742,38 @@ function simpleCalculator(num1, num2, operation) {
     if (operation === "/") return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
     return "Invalid operation";
 }
+
+// Add this to your initializeProjectsPage() function or create a new function
+function centerModal() {
+    const demos = document.querySelectorAll('.full-demo');
+    demos.forEach(demo => {
+        demo.style.position = 'fixed';
+        demo.style.top = '50%';
+        demo.style.left = '50%';
+        demo.style.transform = 'translate(-50%, -50%)';
+        demo.style.margin = '0';
+        demo.style.zIndex = '1001';
+    });
+}
+
+// Call this when opening any demo
+function openQuoteDemo() {
+    currentDemo = 'quote';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        // Force centering
+        setTimeout(() => {
+            centerModal();
+        }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'block';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    
+    initializeQuoteDemo();
+}
