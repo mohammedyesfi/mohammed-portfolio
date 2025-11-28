@@ -1941,56 +1941,30 @@ html {
     margin: 0;
 }
 
-/* === FIX MODAL HEADER GAP === */
-.demo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--space-4) var(--space-6);
-    border-bottom: 1px solid var(--border);
-    background: var(--primary);
-    color: white;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    margin: 0;
-    min-height: 60px; /* Ensure consistent height */
-}
-
-.demo-header h3 {
-    margin: 0;
-    color: white;
-    font-size: var(--text-xl);
-    font-weight: 600;
-}
-
-.close-demo {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    font-size: var(--text-xl);
-    cursor: pointer;
-    padding: 0.5rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    flex-shrink: 0; /* Prevent button from shrinking */
-}
-
-.close-demo:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-/* Ensure the modal has no gap at the top */
+/* === AGGRESSIVE GAP FIX === */
 .full-demo {
-    border-radius: var(--radius-lg);
-    overflow: hidden; /* This prevents any content from peeking out */
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
-/* Remove any potential margin from the first element in demo content */
-.demo-content > *:first-child {
-    margin-top: 0;
+.demo-header {
+    margin: 0 !important;
+    padding: var(--space-4) var(--space-6) !important;
+    border: none !important;
+}
+
+/* Remove any top margin from the entire modal */
+#full-demos {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Ensure no gap in the overlay */
+#full-demos::before {
+    display: none;
 }
