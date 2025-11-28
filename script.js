@@ -156,3 +156,107 @@ console.log("15 / 7 = " + simpleCalculator(15, 7, "/"));
 // 10. AUTO-RUN PERSONALIZED GREETING (Optional)
 // Uncomment the line below if you want a greeting when page loads
 // personalizedGreeting();
+
+// === DARK MODE FUNCTIONALITY === //
+
+// 1. DOM SELECTION - Get the toggle button
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const themeIcon = document.querySelector('.theme-icon');
+const themeText = document.querySelector('.theme-text');
+
+// 2. CHECK USER PREFERENCE
+function getPreferredTheme() {
+    // Check if user has a saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+    
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    
+    return 'light'; // Default to light
+}
+
+// 3. APPLY THEME FUNCTION
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Update toggle button text and icon
+    if (theme === 'dark') {
+        themeIcon.textContent = '☀️';
+        themeText.textContent = 'Light Mode';
+    } else {
+        themeIcon.textContent = '🌙';
+        themeText.textContent = 'Dark Mode';
+    }
+    
+    // Save preference
+    localStorage.setItem('theme', theme);
+}
+
+// 4. TOGGLE THEME FUNCTION
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    applyTheme(newTheme);
+    console.log(`Theme changed to: ${newTheme} mode`);
+}
+
+// 5. INITIALIZE THEME WHEN PAGE LOADS
+function initializeTheme() {
+    const preferredTheme = getPreferredTheme();
+    applyTheme(preferredTheme);
+    console.log(`Initial theme: ${preferredTheme}`);
+}
+
+// 6. ADD EVENT LISTENER
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme
+    initializeTheme();
+    
+    // Add click event to toggle button
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleTheme);
+        console.log('Dark mode toggle button initialized!');
+    }
+    
+    // Listen for system theme changes
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+});
+
+// 7. DEMO: DOM MANIPULATION EXAMPLES
+function demonstrateDOMManipulation() {
+    console.log('=== DOM MANIPULATION EXAMPLES ===');
+    
+    // Example 1: Changing text content
+    const demoElement = document.getElementById('message');
+    if (demoElement) {
+        console.log('Before:', demoElement.textContent);
+        // We'll change this when the change message button is clicked
+    }
+    
+    // Example 2: Changing styles with JavaScript
+    const header = document.querySelector('header');
+    if (header) {
+        console.log('Header background color:', getComputedStyle(header).backgroundColor);
+    }
+    
+    // Example 3: Adding/removing classes
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+        console.log(`Section ${index + 1} classes:`, section.classList.toString());
+    });
+}
+
+// Call the demo function
+demonstrateDOMManipulation();
