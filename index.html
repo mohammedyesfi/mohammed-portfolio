@@ -19,6 +19,8 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        
+        <!-- Dark Mode Toggle -->
         <div class="theme-toggle">
             <button id="dark-mode-toggle" class="theme-btn">
                 <span class="theme-icon">🌙</span>
@@ -51,81 +53,119 @@
             <p>When I'm not coding, you can find me exploring my hobbies, learning new skills, and enjoying the simple pleasures of life like a good cup of coffee.</p>
         </section>
 
+        <!-- Hobbies Section - Now Dynamic! -->
         <section id="hobbies">
             <h2>My Hobbies</h2>
-            <ul class="hobbies-list">
-                <li>
-                    <strong>Horse Riding</strong><br>
-                    <p>There's something magical about connecting with these majestic animals and riding through nature.</p>
-                    <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="A person riding a horse in a field" width="300">
-                </li>
-                <li>
-                    <strong>Drawing & Art</strong><br>
-                    <p>Expressing creativity through pencil and paper helps me see the world from different perspectives.</p>
-                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Art supplies and drawings on a table" width="300">
-                </li>
-                <li>
-                    <strong>Coffee Enthusiast</strong><br>
-                    <p>Exploring different coffee brewing methods and enjoying the perfect cup is my daily ritual.</p>
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="A cup of coffee with latte art" width="300">
-                </li>
-            </ul>
+            <p>Here are some things I enjoy doing in my free time:</p>
+            
+            <!-- This is where JavaScript will add the hobbies -->
+            <div id="hobbies-container">
+                <div class="loading-message">
+                    <p>Loading hobbies... ⏳</p>
+                </div>
+            </div>
+            
+            <!-- Fun Stats Section -->
+            <div class="hobby-stats">
+                <h3>Hobby Stats</h3>
+                <div id="stats-container">
+                    <p>Total hobbies: <span id="hobby-count">0</span></p>
+                    <p>Favorite hobby: <span id="favorite-hobby">Loading...</span></p>
+                </div>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <p>I'm always interested in connecting with fellow developers and creative minds. Feel free to reach out!</p>
-            <form>
-                <div>
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <!-- Quote Generator Section -->
+        <section id="quote-generator">
+            <h2>Daily Inspiration</h2>
+            <div class="quote-container">
+                <div id="quote-display">
+                    <p class="quote-text">"The only way to do great work is to love what you do."</p>
                 </div>
-                <div>
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                <button id="new-quote" class="quote-btn">✨ New Quote</button>
+                <div class="quote-stats">
+                    <p>Quotes shown: <span id="quote-count">0</span></p>
                 </div>
-                <div>
-                    <label for="message">Your Message:</label>
-                    <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
+            </div>
         </section>
 
         <!-- JavaScript Demo Section -->
         <section id="javascript-demo">
             <h2>JavaScript Playground</h2>
             <p>Let's test some interactive features! Click the buttons below to see JavaScript in action.</p>
+            
             <div class="demo-buttons">
                 <button id="alert-button" class="demo-btn">Click Me for Alert! 🚨</button>
                 <button id="change-text-button" class="demo-btn">Change the Message ✨</button>
                 <button id="toggle-button" class="demo-btn">Toggle Secret Message 🔄</button>
                 <button id="counter-button" class="demo-btn">Click Counter: <span id="click-count">0</span> 🔢</button>
             </div>
+            
             <div class="demo-results">
                 <p id="message">This message will change when you click the button!</p>
                 <p id="secret-message" style="display: none;">🎉 Surprise! You found the secret message! JavaScript is awesome! 🎉</p>
             </div>
         </section>
-        <!-- Dark Mode Test Section -->
-        <section id="dark-mode-test">
-            <h2>Dark Mode Demo</h2>
-            <p>Click the moon button in the top-right corner to toggle between light and dark themes!</p>
-            <div class="color-swatch">
-                <div class="swatch light-swatch">
-                    <div class="swatch-color" style="background: var(--background);"></div>
-                    <span>Background</span>
+
+        <!-- Contact Section with Enhanced Form -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p>I'm always interested in connecting with fellow developers and creative minds. Feel free to reach out!</p>
+            
+            <form id="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    <div class="error-message" id="name-error"></div>
                 </div>
-                <div class="swatch surface-swatch">
-                    <div class="swatch-color" style="background: var(--surface);"></div>
-                    <span>Surface</span>
+                
+                <div class="form-group">
+                    <label for="email">Your Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <div class="error-message" id="email-error"></div>
                 </div>
-                <div class="swatch text-swatch">
-                    <div class="swatch-color" style="background: var(--text-dark);"></div>
-                    <span>Text</span>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="">Select a subject...</option>
+                        <option value="work">Work Opportunity</option>
+                        <option value="collaboration">Project Collaboration</option>
+                        <option value="advice">Career Advice</option>
+                        <option value="hello">Just saying hello!</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" rows="5" placeholder="What would you like to say?" required></textarea>
+                    <div class="error-message" id="message-error"></div>
+                    <div class="char-count">
+                        <span id="char-counter">0</span>/500 characters
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loading" style="display: none;">
+                            <span class="loading-spinner"></span> Sending...
+                        </span>
+                    </button>
+                    <button type="button" id="reset-btn" class="reset-btn">Reset Form</button>
+                </div>
+                
+                <div id="form-status" class="form-status"></div>
+            </form>
+            
+            <!-- Form Success Message (hidden by default) -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <div class="success-icon">✅</div>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for reaching out! I'll get back to you as soon as possible.</p>
+                <button id="send-another" class="btn-secondary">Send Another Message</button>
             </div>
-            <p><small>Your preference will be saved automatically! 🔄</small></p>
         </section>
     </main>
 
