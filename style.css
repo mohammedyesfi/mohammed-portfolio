@@ -1795,3 +1795,91 @@ html {
     max-width: 600px;
     z-index: 1001;
 }
+
+
+/* === FIX FOR MODAL POSITIONING === */
+#full-demos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.full-demo {
+    position: relative;
+    margin: 2rem auto;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    max-width: 600px;
+    width: 90%;
+    z-index: 1001;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Center the modal properly */
+.full-demo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Smooth opening animation */
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Ensure demo content fits properly */
+.demo-content {
+    padding: var(--space-6);
+    max-height: calc(90vh - 120px);
+    overflow-y: auto;
+}
+
+/* Fix for quote generator demo specifically */
+.full-quote-generator {
+    text-align: center;
+    padding: var(--space-4);
+}
+
+.quote-display-large {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    border-left: 4px solid var(--secondary);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Remove any top margin from the demo header */
+.demo-header {
+    margin: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* Ensure close button is properly positioned */
+.close-demo {
+    position: static;
+    margin: 0;
+}
