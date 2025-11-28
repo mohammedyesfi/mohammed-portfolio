@@ -49,6 +49,8 @@ function demonstrateLoops() {
 
 function displayHobbies() {
     const container = document.getElementById('hobbies-container');
+    if (!container) return;
+    
     container.innerHTML = '';
     
     console.log("🎨 Displaying hobbies dynamically...");
@@ -76,79 +78,56 @@ function updateHobbyStats() {
     const favoriteHobbies = hobbies.filter(hobby => hobby.favorite);
     const favoriteHobby = favoriteHobbies.length > 0 ? favoriteHobbies[0].title : hobbies[0].title;
     
-    document.getElementById('hobby-count').textContent = totalHobbies;
-    document.getElementById('favorite-hobby').textContent = favoriteHobby;
+    const hobbyCountElement = document.getElementById('hobby-count');
+    const favoriteHobbyElement = document.getElementById('favorite-hobby');
+    
+    if (hobbyCountElement) hobbyCountElement.textContent = totalHobbies;
+    if (favoriteHobbyElement) favoriteHobbyElement.textContent = favoriteHobby;
     
     console.log(`📊 Hobby Stats: ${totalHobbies} total, Favorite: ${favoriteHobby}`);
 }
 
-// === QUOTE GENERATOR FUNCTIONALITY === //
-const quotes = [
-    {
-        text: "The only way to do great work is to love what you do.",
-        author: "Steve Jobs",
-        category: "work"
-    },
-    {
-        text: "Innovation distinguishes between a leader and a follower.",
-        author: "Steve Jobs", 
-        category: "leadership"
-    },
-    {
-        text: "Your time is limited, so don't waste it living someone else's life.",
-        author: "Steve Jobs",
-        category: "life"
-    },
-    {
-        text: "The future belongs to those who believe in the beauty of their dreams.",
-        author: "Eleanor Roosevelt",
-        category: "dreams"
-    },
-    {
-        text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-        author: "Winston Churchill",
-        category: "perseverance"
-    }
-];
+// === DARK MODE FUNCTIONALITY === //
+const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-let quoteCount = 0;
-let currentQuoteIndex = -1;
-
-function getRandomQuote() {
-    let newIndex;
-    do {
-        newIndex = Math.floor(Math.random() * quotes.length);
-    } while (newIndex === currentQuoteIndex && quotes.length > 1);
-    
-    currentQuoteIndex = newIndex;
-    return quotes[newIndex];
+function getPreferredTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    return 'light';
 }
 
-function displayQuote() {
-    const quote = getRandomQuote();
-    const quoteDisplay = document.getElementById('quote-display');
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
     
-    quoteDisplay.innerHTML = `
-        <p class="quote-text">"${quote.text}"</p>
-        <p class="quote-author">— ${quote.author}</p>
-        <span class="quote-category">#${quote.category}</span>
-    `;
+    const themeIcon = document.querySelector('.theme-icon');
+    const themeText = document.querySelector('.theme-text');
     
-    quoteCount++;
-    document.getElementById('quote-count').textContent = quoteCount;
-    
-    console.log(`📖 Displayed quote: "${quote.text}" by ${quote.author}`);
-}
-
-function initializeQuoteGenerator() {
-    displayQuote();
-    
-    const newQuoteBtn = document.getElementById('new-quote');
-    if (newQuoteBtn) {
-        newQuoteBtn.addEventListener('click', displayQuote);
+    if (themeIcon && themeText) {
+        if (theme === 'dark') {
+            themeIcon.textContent = '☀️';
+            themeText.textContent = 'Light Mode';
+        } else {
+            themeIcon.textContent = '🌙';
+            themeText.textContent = 'Dark Mode';
+        }
     }
     
-    console.log("💬 Quote generator initialized!");
+    localStorage.setItem('theme', theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    applyTheme(newTheme);
+    console.log(`Theme changed to: ${newTheme} mode`);
+}
+
+function initializeTheme() {
+    const preferredTheme = getPreferredTheme();
+    applyTheme(preferredTheme);
+    console.log(`Initial theme: ${preferredTheme}`);
 }
 
 // === CONTACT FORM WITH VALIDATION === //
@@ -161,15 +140,17 @@ class ContactForm {
         this.sendAnotherBtn = document.getElementById('send-another');
         this.charCounter = document.getElementById('char-counter');
         
-        this.init();
+        if (this.form) {
+            this.init();
+        }
     }
     
     init() {
         console.log("📝 Contact form initialized!");
         
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        this.resetBtn.addEventListener('click', () => this.resetForm());
-        this.sendAnotherBtn.addEventListener('click', () => this.showForm());
+        if (this.resetBtn) this.resetBtn.addEventListener('click', () => this.resetForm());
+        if (this.sendAnotherBtn) this.sendAnotherBtn.addEventListener('click', () => this.showForm());
         
         this.setupRealTimeValidation();
         this.setupCharacterCounter();
@@ -191,17 +172,21 @@ class ContactForm {
     
     setupCharacterCounter() {
         const messageField = document.getElementById('message');
+        if (!messageField) return;
         
         messageField.addEventListener('input', () => {
             const length = messageField.value.length;
-            this.charCounter.textContent = length;
+            if (this.charCounter) this.charCounter.textContent = length;
             
-            if (length > 400) {
-                this.charCounter.parentElement.className = 'char-count warning';
-            } else if (length > 500) {
-                this.charCounter.parentElement.className = 'char-count error';
-            } else {
-                this.charCounter.parentElement.className = 'char-count';
+            const charCountElement = this.charCounter?.parentElement;
+            if (charCountElement) {
+                if (length > 400) {
+                    charCountElement.className = 'char-count warning';
+                } else if (length > 500) {
+                    charCountElement.className = 'char-count error';
+                } else {
+                    charCountElement.className = 'char-count';
+                }
             }
         });
     }
@@ -238,19 +223,21 @@ class ContactForm {
     }
     
     showFieldError(field, errorElement, message) {
-        field.parentElement.classList.add('error');
-        field.parentElement.classList.remove('success');
-        errorElement.textContent = message;
+        if (field.parentElement) {
+            field.parentElement.classList.add('error');
+            field.parentElement.classList.remove('success');
+        }
+        if (errorElement) errorElement.textContent = message;
     }
     
     clearFieldError(field) {
-        field.parentElement.classList.remove('error');
-        field.parentElement.classList.remove('success');
+        if (field.parentElement) {
+            field.parentElement.classList.remove('error');
+            field.parentElement.classList.remove('success');
+        }
         
         const errorElement = document.getElementById(`${field.name}-error`);
-        if (errorElement) {
-            errorElement.textContent = '';
-        }
+        if (errorElement) errorElement.textContent = '';
         
         this.clearFormStatus();
     }
@@ -305,54 +292,64 @@ class ContactForm {
     }
     
     setLoadingState(loading) {
+        if (!this.submitBtn) return;
+        
         const btnText = this.submitBtn.querySelector('.btn-text');
         const btnLoading = this.submitBtn.querySelector('.btn-loading');
         
         if (loading) {
-            btnText.style.display = 'none';
-            btnLoading.style.display = 'inline';
+            if (btnText) btnText.style.display = 'none';
+            if (btnLoading) btnLoading.style.display = 'inline';
             this.submitBtn.disabled = true;
         } else {
-            btnText.style.display = 'inline';
-            btnLoading.style.display = 'none';
+            if (btnText) btnText.style.display = 'inline';
+            if (btnLoading) btnLoading.style.display = 'none';
             this.submitBtn.disabled = false;
         }
     }
     
     showSuccess() {
-        this.form.style.display = 'none';
-        this.successMessage.style.display = 'block';
+        if (this.form) this.form.style.display = 'none';
+        if (this.successMessage) this.successMessage.style.display = 'block';
         
         const formData = this.getFormData();
         console.log('📝 Form data:', formData);
     }
     
     showForm() {
-        this.form.style.display = 'block';
-        this.successMessage.style.display = 'none';
+        if (this.form) this.form.style.display = 'block';
+        if (this.successMessage) this.successMessage.style.display = 'none';
         this.resetForm();
     }
     
     resetForm() {
-        this.form.reset();
-        this.charCounter.textContent = '0';
-        this.charCounter.parentElement.className = 'char-count';
+        if (this.form) this.form.reset();
+        if (this.charCounter) {
+            this.charCounter.textContent = '0';
+            this.charCounter.parentElement.className = 'char-count';
+        }
         
-        const formGroups = this.form.querySelectorAll('.form-group');
-        formGroups.forEach(group => {
-            group.classList.remove('error', 'success');
-        });
+        const formGroups = this.form?.querySelectorAll('.form-group');
+        if (formGroups) {
+            formGroups.forEach(group => {
+                group.classList.remove('error', 'success');
+            });
+        }
         
-        const errorMessages = this.form.querySelectorAll('.error-message');
-        errorMessages.forEach(error => {
-            error.textContent = '';
-        });
+        const errorMessages = this.form?.querySelectorAll('.error-message');
+        if (errorMessages) {
+            errorMessages.forEach(error => {
+                error.textContent = '';
+            });
+        }
         
         this.clearFormStatus();
         console.log("🔄 Form reset");
     }
     
     getFormData() {
+        if (!this.form) return {};
+        
         const formData = new FormData(this.form);
         const data = {};
         
@@ -365,15 +362,19 @@ class ContactForm {
     
     showFormStatus(message, type) {
         const statusElement = document.getElementById('form-status');
-        statusElement.textContent = message;
-        statusElement.className = `form-status ${type}`;
+        if (statusElement) {
+            statusElement.textContent = message;
+            statusElement.className = `form-status ${type}`;
+        }
     }
     
     clearFormStatus() {
         const statusElement = document.getElementById('form-status');
-        statusElement.textContent = '';
-        statusElement.className = 'form-status';
-        statusElement.style.display = 'none';
+        if (statusElement) {
+            statusElement.textContent = '';
+            statusElement.className = 'form-status';
+            statusElement.style.display = 'none';
+        }
     }
 }
 
@@ -381,118 +382,331 @@ function initializeContactForm() {
     new ContactForm();
 }
 
-// === DARK MODE FUNCTIONALITY === //
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-const themeIcon = document.querySelector('.theme-icon');
-const themeText = document.querySelector('.theme-text');
+// === ENHANCED PROJECTS PAGE FUNCTIONALITY === //
 
-function getPreferredTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme;
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-    return 'light';
+// Demo modal management
+let currentDemo = null;
+
+function openQuoteDemo() {
+    currentDemo = 'quote';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    
+    if (fullDemos) fullDemos.style.display = 'block';
+    if (quoteDemo) quoteDemo.style.display = 'block';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    
+    initializeQuoteDemo();
 }
 
-function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    if (theme === 'dark') {
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Light Mode';
-    } else {
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Dark Mode';
+function openPlaygroundDemo() {
+    currentDemo = 'playground';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    
+    if (fullDemos) fullDemos.style.display = 'block';
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'block';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    
+    initializePlaygroundDemo();
+}
+
+function openCalculatorDemo() {
+    currentDemo = 'calculator';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    
+    if (fullDemos) fullDemos.style.display = 'block';
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'block';
+    
+    initializeCalculator();
+}
+
+function openTodoDemo() {
+    alert("Todo List demo coming soon! This shows progressive enhancement.");
+}
+
+function closeDemos() {
+    const fullDemos = document.getElementById('full-demos');
+    if (fullDemos) fullDemos.style.display = 'none';
+    currentDemo = null;
+}
+
+// Close demo when clicking outside
+document.addEventListener('click', function(event) {
+    const fullDemos = document.getElementById('full-demos');
+    if (fullDemos && fullDemos.style.display === 'block' && event.target === fullDemos) {
+        closeDemos();
     }
-    localStorage.setItem('theme', theme);
-}
+});
 
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
-    console.log(`Theme changed to: ${newTheme} mode`);
-}
-
-function initializeTheme() {
-    const preferredTheme = getPreferredTheme();
-    applyTheme(preferredTheme);
-    console.log(`Initial theme: ${preferredTheme}`);
-}
-
-// === JAVASCRIPT DEMO FUNCTIONS === //
-function showAlert() {
-    alert("🎊 You clicked me, Mohammed! Great job with JavaScript! 🎊");
-    console.log("Alert button was clicked!");
-}
-
-function changeMessage() {
-    const messageElement = document.getElementById('message');
-    const messages = [
-        "JavaScript is powerful! 💪",
-        "You can create amazing things! 🌟",
-        "Web development is fun! 🎉",
-        "Hello from JavaScript! 👋",
-        "You're learning fast! 🚀"
+// Quote Generator Demo
+function initializeQuoteDemo() {
+    const fullQuotes = [
+        {
+            text: "The only way to do great work is to love what you do.",
+            author: "Steve Jobs",
+            category: "work"
+        },
+        {
+            text: "Innovation distinguishes between a leader and a follower.",
+            author: "Steve Jobs", 
+            category: "leadership"
+        },
+        {
+            text: "Your time is limited, so don't waste it living someone else's life.",
+            author: "Steve Jobs",
+            category: "life"
+        },
+        {
+            text: "The future belongs to those who believe in the beauty of their dreams.",
+            author: "Eleanor Roosevelt",
+            category: "dreams"
+        },
+        {
+            text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+            author: "Winston Churchill",
+            category: "perseverance"
+        }
     ];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    messageElement.textContent = randomMessage;
-    console.log("Message changed to: " + randomMessage);
+
+    let quoteCount = 0;
+
+    function displayFullQuote() {
+        const randomIndex = Math.floor(Math.random() * fullQuotes.length);
+        const quote = fullQuotes[randomIndex];
+        
+        const quoteText = document.getElementById('full-quote-text');
+        const quoteAuthor = document.getElementById('full-quote-author');
+        const quoteCategory = document.getElementById('full-quote-category');
+        const quoteCountElement = document.getElementById('full-quote-count');
+        
+        if (quoteText) quoteText.textContent = `"${quote.text}"`;
+        if (quoteAuthor) quoteAuthor.textContent = `— ${quote.author}`;
+        if (quoteCategory) quoteCategory.textContent = `#${quote.category}`;
+        
+        quoteCount++;
+        if (quoteCountElement) quoteCountElement.textContent = quoteCount;
+    }
+
+    // Add event listener
+    const newQuoteBtn = document.getElementById('full-new-quote');
+    if (newQuoteBtn) {
+        newQuoteBtn.addEventListener('click', displayFullQuote);
+    }
+
+    // Display first quote
+    displayFullQuote();
 }
 
-function toggleSecretMessage() {
-    const secretMessage = document.getElementById('secret-message');
-    if (secretMessage.style.display === "none") {
-        secretMessage.style.display = "block";
-        console.log("Secret message revealed!");
+// JavaScript Playground Demo
+function initializePlaygroundDemo() {
+    let fullClickCount = 0;
+
+    // Alert Button
+    const fullAlertButton = document.getElementById('full-alert-button');
+    if (fullAlertButton) {
+        fullAlertButton.addEventListener('click', function() {
+            alert("🎊 You clicked me! This is a fully functional demo! 🎊");
+        });
+    }
+
+    // Change Text Button
+    const fullChangeButton = document.getElementById('full-change-button');
+    if (fullChangeButton) {
+        fullChangeButton.addEventListener('click', function() {
+            const messages = [
+                "JavaScript is powerful! 💪",
+                "You can create amazing things! 🌟",
+                "Web development is fun! 🎉",
+                "Hello from the full demo! 👋",
+                "You're learning fast! 🚀"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            const messageElement = document.getElementById('full-message');
+            if (messageElement) messageElement.textContent = randomMessage;
+        });
+    }
+
+    // Toggle Button
+    const fullToggleButton = document.getElementById('full-toggle-button');
+    if (fullToggleButton) {
+        fullToggleButton.addEventListener('click', function() {
+            const secretMessage = document.getElementById('full-secret-message');
+            if (secretMessage) {
+                if (secretMessage.style.display === "none") {
+                    secretMessage.style.display = "block";
+                } else {
+                    secretMessage.style.display = "none";
+                }
+            }
+        });
+    }
+
+    // Counter Button
+    const fullCounterButton = document.getElementById('full-counter-button');
+    if (fullCounterButton) {
+        fullCounterButton.addEventListener('click', function() {
+            fullClickCount++;
+            const counterElement = document.getElementById('full-click-count');
+            if (counterElement) {
+                counterElement.textContent = fullClickCount;
+                
+                // Change color after 5 clicks
+                if (fullClickCount >= 5) {
+                    counterElement.style.color = "var(--secondary)";
+                }
+            }
+        });
+    }
+}
+
+// Calculator Demo
+let currentDisplay = '0';
+let shouldResetDisplay = false;
+
+function updateCalculatorDisplay() {
+    const display = document.getElementById('calc-display');
+    if (display) display.textContent = currentDisplay;
+}
+
+function appendToDisplay(value) {
+    if (currentDisplay === '0' || shouldResetDisplay) {
+        currentDisplay = value;
+        shouldResetDisplay = false;
     } else {
-        secretMessage.style.display = "none";
-        console.log("Secret message hidden!");
+        currentDisplay += value;
     }
+    updateCalculatorDisplay();
 }
 
-let clickCount = 0;
-function increaseCounter() {
-    clickCount++;
-    const counterElement = document.getElementById('click-count');
-    counterElement.textContent = clickCount;
-    console.log("Counter increased to: " + clickCount);
-    if (clickCount >= 10) {
-        counterElement.style.color = "var(--secondary)";
-        counterElement.style.fontWeight = "bold";
+function clearCalculator() {
+    currentDisplay = '0';
+    updateCalculatorDisplay();
+}
+
+function deleteLast() {
+    if (currentDisplay.length > 1) {
+        currentDisplay = currentDisplay.slice(0, -1);
+    } else {
+        currentDisplay = '0';
     }
+    updateCalculatorDisplay();
+}
+
+function calculateResult() {
+    try {
+        // Replace × with * for evaluation
+        const expression = currentDisplay.replace(/×/g, '*');
+        currentDisplay = eval(expression).toString();
+    } catch (error) {
+        currentDisplay = 'Error';
+    }
+    shouldResetDisplay = true;
+    updateCalculatorDisplay();
+}
+
+function initializeCalculator() {
+    // Reset calculator state
+    currentDisplay = '0';
+    shouldResetDisplay = false;
+    updateCalculatorDisplay();
+}
+
+// Mini preview demos for project cards
+function showMiniAlert() {
+    alert("This is a mini preview! Click 'Live Demo' for the full interactive experience!");
+}
+
+function changeMiniText() {
+    const messages = ["Great!", "Awesome!", "Cool!"];
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    const miniMessage = document.getElementById('mini-message');
+    if (miniMessage) miniMessage.textContent = randomMessage;
+}
+
+// Initialize projects page
+function initializeProjectsPage() {
+    console.log("🎯 Projects page initialized with full demos!");
+    
+    // Add keyboard support for demos
+    document.addEventListener('keydown', function(event) {
+        if (currentDemo === 'calculator') {
+            // Calculator keyboard support
+            if (event.key >= '0' && event.key <= '9') {
+                appendToDisplay(event.key);
+            } else if (event.key === '+') {
+                appendToDisplay('+');
+            } else if (event.key === '-') {
+                appendToDisplay('-');
+            } else if (event.key === '*') {
+                appendToDisplay('×');
+            } else if (event.key === '/') {
+                appendToDisplay('/');
+            } else if (event.key === '.') {
+                appendToDisplay('.');
+            } else if (event.key === 'Enter' || event.key === '=') {
+                calculateResult();
+            } else if (event.key === 'Escape') {
+                clearCalculator();
+            } else if (event.key === 'Backspace') {
+                deleteLast();
+            }
+        }
+        
+        // Close demo with Escape key
+        if (event.key === 'Escape' && currentDemo) {
+            closeDemos();
+        }
+    });
 }
 
 // === INITIALIZE EVERYTHING === //
 document.addEventListener('DOMContentLoaded', function() {
     console.log("📄 Page loaded, initializing everything...");
     
-    // Initialize theme
+    // Initialize theme (works on both pages)
     initializeTheme();
     
-    // Initialize dark mode toggle
+    // Initialize dark mode toggle (works on both pages)
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', toggleTheme);
     }
     
-    // Initialize JavaScript demo buttons
-    document.getElementById("alert-button")?.addEventListener("click", showAlert);
-    document.getElementById("change-text-button")?.addEventListener("click", changeMessage);
-    document.getElementById("toggle-button")?.addEventListener("click", toggleSecretMessage);
-    document.getElementById("counter-button")?.addEventListener("click", increaseCounter);
+    // Check which page we're on and initialize accordingly
+    const isProjectsPage = window.location.pathname.includes('projects.html') || 
+                          document.getElementById('projects-grid');
     
-    // Initialize arrays & loops features
-    demonstrateLoops();
-    displayHobbies();
+    const isHomePage = window.location.pathname.includes('index.html') || 
+                      window.location.pathname === '/' ||
+                      document.getElementById('hobbies-container');
     
-    // Initialize quote generator
-    initializeQuoteGenerator();
+    // Initialize projects page features
+    if (isProjectsPage) {
+        initializeProjectsPage();
+    }
     
-    // Initialize contact form
-    initializeContactForm();
+    // Initialize homepage features
+    if (isHomePage) {
+        demonstrateLoops();
+        displayHobbies();
+        initializeContactForm();
+    }
     
-    // Keyboard shortcut
+    // Global keyboard shortcut
     document.addEventListener('keydown', function(event) {
         if (event.key === "a" || event.key === "A") {
-            showAlert();
+            alert("🎊 Keyboard shortcuts working! Great job! 🎊");
         }
     });
     
@@ -507,48 +721,3 @@ function simpleCalculator(num1, num2, operation) {
     if (operation === "/") return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
     return "Invalid operation";
 }
-// === INITIALIZE EVERYTHING === //
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("📄 Page loaded, initializing everything...");
-    
-    // Initialize theme (works on both pages)
-    initializeTheme();
-    
-    // Initialize dark mode toggle (works on both pages)
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', toggleTheme);
-    }
-    
-    // Only initialize these if we're on the projects page OR homepage
-    const isProjectsPage = window.location.pathname.includes('projects.html') || 
-                          document.getElementById('interactive-projects');
-    
-    const isHomePage = window.location.pathname.includes('index.html') || 
-                      window.location.pathname === '/' ||
-                      document.getElementById('hobbies-container');
-    
-    // Initialize JavaScript features (now on projects page)
-    if (isProjectsPage) {
-        document.getElementById("alert-button")?.addEventListener("click", showAlert);
-        document.getElementById("change-text-button")?.addEventListener("click", changeMessage);
-        document.getElementById("toggle-button")?.addEventListener("click", toggleSecretMessage);
-        document.getElementById("counter-button")?.addEventListener("click", increaseCounter);
-        initializeQuoteGenerator();
-    }
-    
-    // Initialize homepage features
-    if (isHomePage) {
-        demonstrateLoops();
-        displayHobbies();
-        initializeContactForm();
-    }
-    
-    // Keyboard shortcut (works everywhere)
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "a" || event.key === "A") {
-            showAlert();
-        }
-    });
-    
-    console.log("✅ Everything initialized successfully!");
-});
