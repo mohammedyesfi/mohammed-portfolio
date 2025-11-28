@@ -602,3 +602,58 @@ html {
         border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
 }
+
+/* === JAVASCRIPT DEMO SECTION === */
+#javascript-demo {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid var(--primary-light);
+}
+
+.demo-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-4);
+    margin: var(--space-6) 0;
+}
+
+.demo-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+}
+
+.demo-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.demo-results {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-top: var(--space-6);
+}
+
+#message {
+    font-size: var(--text-lg);
+    color: var(--text-dark);
+    text-align: center;
+    margin: 0;
+}
+
+#secret-message {
+    font-size: var(--text-lg);
+    color: var(--secondary);
+    text-align: center;
+    font-weight: 600;
+    margin: var(--space-4) 0 0 0;
+}
