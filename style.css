@@ -1968,3 +1968,73 @@ html {
 #full-demos::before {
     display: none;
 }
+
+/* Temperature Converter Styles */
+.converter-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.converter-container h2 {
+    color: var(--primary);
+    margin-bottom: var(--space-6);
+}
+
+.input-group {
+    margin-bottom: var(--space-4);
+}
+
+.input-group input {
+    width: 100%;
+    padding: var(--space-4);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--text-lg);
+    text-align: center;
+}
+
+.conversion-types {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.convert-btn {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.convert-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.result {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    border-radius: var(--radius);
+}
+
+.success-message {
+    background: var(--background);
+    border: 2px solid var(--primary);
+    color: var(--text-dark);
+}
+
+.error-message {
+    background: #fef2f2;
+    border: 2px solid #ef4444;
+    color: #dc2626;
+}
