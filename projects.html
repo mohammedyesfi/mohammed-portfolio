@@ -284,7 +284,7 @@
         </div>
         
         <div class="project-actions">
-            <a href="temperature-converter.html" class="demo-btn primary">Live Demo</a>
+            <button class="demo-btn primary" onclick="openTempConverterDemo()">Live Demo</button>
             <a href="#" class="demo-btn secondary">Source Code</a>
         </div>
     </div>
@@ -336,6 +336,36 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Add this with the other full demos -->
+<div id="temp-converter-demo-full" class="full-demo">
+    <div class="demo-header">
+        <h3>Temperature Converter - Live Demo</h3>
+        <button class="close-demo" onclick="closeDemos()">×</button>
+    </div>
+    <div class="demo-content">
+        <div class="temp-converter-demo">
+            <div class="converter-container">
+                <h4>🌡️ Temperature Converter</h4>
+                
+                <div class="input-group">
+                    <input type="number" id="tempInputModal" placeholder="Enter temperature">
+                </div>
+                
+                <div class="conversion-types">
+                    <button class="convert-btn" data-from="celsius" data-to="fahrenheit">
+                        °C → °F
+                    </button>
+                    <button class="convert-btn" data-from="fahrenheit" data-to="celsius">
+                        °F → °C
+                    </button>
+                </div>
+                
+                <div id="resultModal" class="result"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- Calculator Full Demo -->
             <div id="calculator-demo-full" class="full-demo">
