@@ -388,55 +388,6 @@ function initializeContactForm() {
 // Demo modal management
 let currentDemo = null;
 
-function openQuoteDemo() {
-    currentDemo = 'quote';
-    const fullDemos = document.getElementById('full-demos');
-    const quoteDemo = document.getElementById('quote-demo-full');
-    const playgroundDemo = document.getElementById('playground-demo-full');
-    const calculatorDemo = document.getElementById('calculator-demo-full');
-    
-    if (fullDemos) fullDemos.style.display = 'block';
-    if (quoteDemo) quoteDemo.style.display = 'block';
-    if (playgroundDemo) playgroundDemo.style.display = 'none';
-    if (calculatorDemo) calculatorDemo.style.display = 'none';
-    
-    initializeQuoteDemo();
-}
-
-function openPlaygroundDemo() {
-    currentDemo = 'playground';
-    const fullDemos = document.getElementById('full-demos');
-    const quoteDemo = document.getElementById('quote-demo-full');
-    const playgroundDemo = document.getElementById('playground-demo-full');
-    const calculatorDemo = document.getElementById('calculator-demo-full');
-    
-    if (fullDemos) fullDemos.style.display = 'block';
-    if (quoteDemo) quoteDemo.style.display = 'none';
-    if (playgroundDemo) playgroundDemo.style.display = 'block';
-    if (calculatorDemo) calculatorDemo.style.display = 'none';
-    
-    initializePlaygroundDemo();
-}
-
-function openCalculatorDemo() {
-    currentDemo = 'calculator';
-    const fullDemos = document.getElementById('full-demos');
-    const quoteDemo = document.getElementById('quote-demo-full');
-    const playgroundDemo = document.getElementById('playground-demo-full');
-    const calculatorDemo = document.getElementById('calculator-demo-full');
-    
-    if (fullDemos) fullDemos.style.display = 'block';
-    if (quoteDemo) quoteDemo.style.display = 'none';
-    if (playgroundDemo) playgroundDemo.style.display = 'none';
-    if (calculatorDemo) calculatorDemo.style.display = 'block';
-    
-    initializeCalculator();
-}
-
-function openTodoDemo() {
-    alert("Todo List demo coming soon! This shows progressive enhancement.");
-}
-
 // FIXED: Enhanced closeDemos function
 function closeDemos() {
     const fullDemos = document.getElementById('full-demos');
@@ -467,7 +418,42 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Modal centering function
+function centerModal() {
+    const demos = document.querySelectorAll('.full-demo');
+    demos.forEach(demo => {
+        demo.style.position = 'fixed';
+        demo.style.top = '50%';
+        demo.style.left = '50%';
+        demo.style.transform = 'translate(-50%, -50%)';
+        demo.style.margin = '0';
+        demo.style.zIndex = '1001';
+    });
+}
+
 // Quote Generator Demo
+function openQuoteDemo() {
+    currentDemo = 'quote';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => {
+            centerModal();
+        }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'block';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    if (tempDemo) tempDemo.style.display = 'none';
+    
+    initializeQuoteDemo();
+}
+
 function initializeQuoteDemo() {
     const fullQuotes = [
         {
@@ -527,6 +513,28 @@ function initializeQuoteDemo() {
 }
 
 // JavaScript Playground Demo
+function openPlaygroundDemo() {
+    currentDemo = 'playground';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => {
+            centerModal();
+        }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'block';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    if (tempDemo) tempDemo.style.display = 'none';
+    
+    initializePlaygroundDemo();
+}
+
 function initializePlaygroundDemo() {
     let fullClickCount = 0;
 
@@ -589,6 +597,28 @@ function initializePlaygroundDemo() {
 }
 
 // Calculator Demo
+function openCalculatorDemo() {
+    currentDemo = 'calculator';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => {
+            centerModal();
+        }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'block';
+    if (tempDemo) tempDemo.style.display = 'none';
+    
+    initializeCalculator();
+}
+
 let currentDisplay = '0';
 let shouldResetDisplay = false;
 
@@ -640,6 +670,132 @@ function initializeCalculator() {
     updateCalculatorDisplay();
 }
 
+// Temperature Converter Demo
+function openTempConverterDemo() {
+    currentDemo = 'temp-converter';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => {
+            centerModal();
+        }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    if (tempDemo) tempDemo.style.display = 'block';
+    
+    initializeTempConverterDemo();
+}
+
+function initializeTempConverterDemo() {
+    const tempInput = document.getElementById('tempInputModal');
+    const resultDiv = document.getElementById('resultModal');
+    const convertButtons = document.querySelectorAll('#temp-converter-demo-full .convert-btn');
+
+    // Clear previous results when opening
+    if (tempInput) tempInput.value = '';
+    if (resultDiv) resultDiv.innerHTML = '';
+
+    const convertTemperature = (value, fromUnit, toUnit) => {
+        try {
+            if (value === '' || isNaN(value)) {
+                throw new Error('Please enter a valid number');
+            }
+
+            const numericValue = parseFloat(value);
+            let result;
+            let formula;
+
+            if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
+                result = (numericValue * 9/5) + 32;
+                formula = `(${numericValue} × 9/5) + 32`;
+            } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
+                result = (numericValue - 32) * 5/9;
+                formula = `(${numericValue} - 32) × 5/9`;
+            } else {
+                throw new Error('Invalid conversion type');
+            }
+
+            const roundedResult = Math.round(result * 100) / 100;
+
+            return {
+                value: roundedResult,
+                formula: formula
+            };
+
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    const displayResult = (originalValue, fromUnit, toUnit, convertedValue, formula) => {
+        const unitSymbols = {
+            celsius: '°C',
+            fahrenheit: '°F'
+        };
+
+        const message = `
+            <div class="success-message">
+                <strong>${originalValue}${unitSymbols[fromUnit]} = ${convertedValue}${unitSymbols[toUnit]}</strong>
+                <br>
+                <small>Formula: ${formula}</small>
+            </div>
+        `;
+
+        if (resultDiv) resultDiv.innerHTML = message;
+    };
+
+    const displayError = (message) => {
+        if (resultDiv) resultDiv.innerHTML = `<div class="error-message">❌ ${message}</div>`;
+    };
+
+    const handleConversion = (fromUnit, toUnit) => {
+        const inputValue = tempInput ? tempInput.value.trim() : '';
+
+        try {
+            const conversion = convertTemperature(inputValue, fromUnit, toUnit);
+            displayResult(inputValue, fromUnit, toUnit, conversion.value, conversion.formula);
+        } catch (error) {
+            displayError(error.message);
+        }
+    };
+
+    // Add event listeners to modal buttons
+    if (convertButtons) {
+        convertButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const fromUnit = button.getAttribute('data-from');
+                const toUnit = button.getAttribute('data-to');
+                handleConversion(fromUnit, toUnit);
+            });
+        });
+    }
+
+    // Enter key support
+    if (tempInput) {
+        tempInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                const firstButton = convertButtons[0];
+                if (firstButton) {
+                    const fromUnit = firstButton.getAttribute('data-from');
+                    const toUnit = firstButton.getAttribute('data-to');
+                    handleConversion(fromUnit, toUnit);
+                }
+            }
+        });
+    }
+}
+
+function openTodoDemo() {
+    alert("Todo List demo coming soon! This shows progressive enhancement.");
+}
+
 // Mini preview demos for project cards
 function showMiniAlert() {
     alert("This is a mini preview! Click 'Live Demo' for the full interactive experience!");
@@ -650,6 +806,15 @@ function changeMiniText() {
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
     const miniMessage = document.getElementById('mini-message');
     if (miniMessage) miniMessage.textContent = randomMessage;
+}
+
+// Temperature Converter Preview for project card
+function convertTempPreview(type) {
+    if (type === 'c-to-f') {
+        alert("25°C = 77°F\n\nIn the full demo, you can convert any temperature!");
+    } else if (type === 'f-to-c') {
+        alert("77°F = 25°C\n\nIn the full demo, you can convert any temperature!");
+    }
 }
 
 // Initialize projects page
@@ -741,160 +906,4 @@ function simpleCalculator(num1, num2, operation) {
     if (operation === "*") return num1 * num2;
     if (operation === "/") return num2 !== 0 ? num1 / num2 : "Cannot divide by zero!";
     return "Invalid operation";
-}
-
-// Add this to your initializeProjectsPage() function or create a new function
-function centerModal() {
-    const demos = document.querySelectorAll('.full-demo');
-    demos.forEach(demo => {
-        demo.style.position = 'fixed';
-        demo.style.top = '50%';
-        demo.style.left = '50%';
-        demo.style.transform = 'translate(-50%, -50%)';
-        demo.style.margin = '0';
-        demo.style.zIndex = '1001';
-    });
-}
-
-// Call this when opening any demo
-function openQuoteDemo() {
-    currentDemo = 'quote';
-    const fullDemos = document.getElementById('full-demos');
-    const quoteDemo = document.getElementById('quote-demo-full');
-    const playgroundDemo = document.getElementById('playground-demo-full');
-    const calculatorDemo = document.getElementById('calculator-demo-full');
-    
-    if (fullDemos) {
-        fullDemos.style.display = 'block';
-        // Force centering
-        setTimeout(() => {
-            centerModal();
-        }, 10);
-    }
-    if (quoteDemo) quoteDemo.style.display = 'block';
-    if (playgroundDemo) playgroundDemo.style.display = 'none';
-    if (calculatorDemo) calculatorDemo.style.display = 'none';
-    
-    initializeQuoteDemo();
-}
-
-// Add this to your script.js for the temperature converter preview
-function convertTempPreview(type) {
-    if (type === 'c-to-f') {
-        alert("25°C = 77°F\n\nIn the full demo, you can convert any temperature!");
-    } else if (type === 'f-to-c') {
-        alert("77°F = 25°C\n\nIn the full demo, you can convert any temperature!");
-    }
-}
-
-// Add to your modal functions
-function openTempConverterDemo() {
-    currentDemo = 'temp-converter';
-    const fullDemos = document.getElementById('full-demos');
-    const tempDemo = document.getElementById('temp-converter-demo-full');
-    const quoteDemo = document.getElementById('quote-demo-full');
-    const playgroundDemo = document.getElementById('playground-demo-full');
-    const calculatorDemo = document.getElementById('calculator-demo-full');
-    
-    if (fullDemos) fullDemos.style.display = 'block';
-    if (tempDemo) tempDemo.style.display = 'block';
-    if (quoteDemo) quoteDemo.style.display = 'none';
-    if (playgroundDemo) playgroundDemo.style.display = 'none';
-    if (calculatorDemo) calculatorDemo.style.display = 'none';
-    
-    initializeTempConverterDemo();
-}
-
-// Temperature converter functionality for modal
-function initializeTempConverterDemo() {
-    const tempInput = document.getElementById('tempInputModal');
-    const resultDiv = document.getElementById('resultModal');
-    const convertButtons = document.querySelectorAll('#temp-converter-demo-full .convert-btn');
-
-    const convertTemperature = (value, fromUnit, toUnit) => {
-        try {
-            if (value === '' || isNaN(value)) {
-                throw new Error('Please enter a valid number');
-            }
-
-            const numericValue = parseFloat(value);
-            let result;
-            let formula;
-
-            if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
-                result = (numericValue * 9/5) + 32;
-                formula = `(${numericValue} × 9/5) + 32`;
-            } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
-                result = (numericValue - 32) * 5/9;
-                formula = `(${numericValue} - 32) × 5/9`;
-            } else {
-                throw new Error('Invalid conversion type');
-            }
-
-            const roundedResult = Math.round(result * 100) / 100;
-
-            return {
-                value: roundedResult,
-                formula: formula
-            };
-
-        } catch (error) {
-            throw error;
-        }
-    };
-
-    const displayResult = (originalValue, fromUnit, toUnit, convertedValue, formula) => {
-        const unitSymbols = {
-            celsius: '°C',
-            fahrenheit: '°F'
-        };
-
-        const message = `
-            <div class="success-message">
-                <strong>${originalValue}${unitSymbols[fromUnit]} = ${convertedValue}${unitSymbols[toUnit]}</strong>
-                <br>
-                <small>Formula: ${formula}</small>
-            </div>
-        `;
-
-        resultDiv.innerHTML = message;
-    };
-
-    const displayError = (message) => {
-        resultDiv.innerHTML = `<div class="error-message">❌ ${message}</div>`;
-    };
-
-    const handleConversion = (fromUnit, toUnit) => {
-        const inputValue = tempInput.value.trim();
-
-        try {
-            const conversion = convertTemperature(inputValue, fromUnit, toUnit);
-            displayResult(inputValue, fromUnit, toUnit, conversion.value, conversion.formula);
-        } catch (error) {
-            displayError(error.message);
-        }
-    };
-
-    // Add event listeners to modal buttons
-    convertButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const fromUnit = button.getAttribute('data-from');
-            const toUnit = button.getAttribute('data-to');
-            handleConversion(fromUnit, toUnit);
-        });
-    });
-
-    // Enter key support
-    tempInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            const firstButton = convertButtons[0];
-            const fromUnit = firstButton.getAttribute('data-from');
-            const toUnit = firstButton.getAttribute('data-to');
-            handleConversion(fromUnit, toUnit);
-        }
-    });
-
-    // Clear previous results when opening
-    tempInput.value = '';
-    resultDiv.innerHTML = '';
 }
