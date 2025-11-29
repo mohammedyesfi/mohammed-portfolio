@@ -786,3 +786,115 @@ function convertTempPreview(type) {
         alert("77°F = 25°C\n\nIn the full demo, you can convert any temperature!");
     }
 }
+
+// Add to your modal functions
+function openTempConverterDemo() {
+    currentDemo = 'temp-converter';
+    const fullDemos = document.getElementById('full-demos');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    
+    if (fullDemos) fullDemos.style.display = 'block';
+    if (tempDemo) tempDemo.style.display = 'block';
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    
+    initializeTempConverterDemo();
+}
+
+// Temperature converter functionality for modal
+function initializeTempConverterDemo() {
+    const tempInput = document.getElementById('tempInputModal');
+    const resultDiv = document.getElementById('resultModal');
+    const convertButtons = document.querySelectorAll('#temp-converter-demo-full .convert-btn');
+
+    const convertTemperature = (value, fromUnit, toUnit) => {
+        try {
+            if (value === '' || isNaN(value)) {
+                throw new Error('Please enter a valid number');
+            }
+
+            const numericValue = parseFloat(value);
+            let result;
+            let formula;
+
+            if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
+                result = (numericValue * 9/5) + 32;
+                formula = `(${numericValue} × 9/5) + 32`;
+            } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
+                result = (numericValue - 32) * 5/9;
+                formula = `(${numericValue} - 32) × 5/9`;
+            } else {
+                throw new Error('Invalid conversion type');
+            }
+
+            const roundedResult = Math.round(result * 100) / 100;
+
+            return {
+                value: roundedResult,
+                formula: formula
+            };
+
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    const displayResult = (originalValue, fromUnit, toUnit, convertedValue, formula) => {
+        const unitSymbols = {
+            celsius: '°C',
+            fahrenheit: '°F'
+        };
+
+        const message = `
+            <div class="success-message">
+                <strong>${originalValue}${unitSymbols[fromUnit]} = ${convertedValue}${unitSymbols[toUnit]}</strong>
+                <br>
+                <small>Formula: ${formula}</small>
+            </div>
+        `;
+
+        resultDiv.innerHTML = message;
+    };
+
+    const displayError = (message) => {
+        resultDiv.innerHTML = `<div class="error-message">❌ ${message}</div>`;
+    };
+
+    const handleConversion = (fromUnit, toUnit) => {
+        const inputValue = tempInput.value.trim();
+
+        try {
+            const conversion = convertTemperature(inputValue, fromUnit, toUnit);
+            displayResult(inputValue, fromUnit, toUnit, conversion.value, conversion.formula);
+        } catch (error) {
+            displayError(error.message);
+        }
+    };
+
+    // Add event listeners to modal buttons
+    convertButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const fromUnit = button.getAttribute('data-from');
+            const toUnit = button.getAttribute('data-to');
+            handleConversion(fromUnit, toUnit);
+        });
+    });
+
+    // Enter key support
+    tempInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            const firstButton = convertButtons[0];
+            const fromUnit = firstButton.getAttribute('data-from');
+            const toUnit = firstButton.getAttribute('data-to');
+            handleConversion(fromUnit, toUnit);
+        }
+    });
+
+    // Clear previous results when opening
+    tempInput.value = '';
+    resultDiv.innerHTML = '';
+}
