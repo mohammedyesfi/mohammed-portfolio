@@ -777,3 +777,12 @@ function openQuoteDemo() {
     
     initializeQuoteDemo();
 }
+
+// Add this to your script.js for the temperature converter preview
+function convertTempPreview(type) {
+    if (type === 'c-to-f') {
+        alert("25°C = 77°F\n\nIn the full demo, you can convert any temperature!");
+    } else if (type === 'f-to-c') {
+        alert("77°F = 25°C\n\nIn the full demo, you can convert any temperature!");
+    }
+}
