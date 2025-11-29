@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter - Mohammed's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="converter-container">
+        <h2>🌡️ Temperature Converter</h2>
+        
+        <div class="input-group">
+            <input type="number" id="tempInput" placeholder="Enter temperature">
+        </div>
+        
+        <div class="conversion-types">
+            <button class="convert-btn" data-from="celsius" data-to="fahrenheit">
+                °C → °F
+            </button>
+            <button class="convert-btn" data-from="fahrenheit" data-to="celsius">
+                °F → °C
+            </button>
+        </div>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="temp-converter.js"></script>
+</body>
+</html>
