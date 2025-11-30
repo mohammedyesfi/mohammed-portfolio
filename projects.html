@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
     <header>
         <h1>My Projects</h1>
         <p>Interactive Web Development Portfolio</p>
@@ -21,7 +20,6 @@
             </ul>
         </nav>
         
-        <!-- Dark Mode Toggle -->
         <div class="theme-toggle">
             <button id="dark-mode-toggle" class="theme-btn">
                 <span class="theme-icon">🌙</span>
@@ -30,15 +28,12 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Projects Header -->
         <section class="projects-intro">
             <h2>My Web Development Projects</h2>
             <p>Here are some interactive projects I've built to demonstrate my skills in JavaScript, DOM manipulation, and modern web development.</p>
         </section>
 
-        <!-- Projects Grid -->
         <section class="projects-grid">
             <!-- Project 1: Quote Generator -->
             <div class="project-card" data-category="javascript">
@@ -242,7 +237,7 @@
                 </div>
             </div>
 
-            <!-- Project 5: Temperature Converter - DAY 1 PROJECT -->
+            <!-- Project 5: Temperature Converter - DAY 1 -->
             <div class="project-card" data-category="javascript">
                 <div class="project-header">
                     <h3>Temperature Converter</h3>
@@ -288,11 +283,105 @@
                     <a href="#" class="demo-btn secondary">Source Code</a>
                 </div>
             </div>
+
+            <!-- Project 6: Employee Directory - DAY 2 -->
+            <div class="project-card" data-category="javascript">
+                <div class="project-header">
+                    <h3>Employee Directory</h3>
+                    <span class="project-status completed">Completed</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container">
+                        <div class="employee-preview">
+                            <div class="preview-employee">
+                                <strong>Mohammed</strong>
+                                <span>Web Developer</span>
+                            </div>
+                            <button class="mini-btn" onclick="showEmployeePreview()">View Team</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>An interactive employee directory demonstrating object manipulation, array methods, and dynamic UI updates.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Objects</span>
+                        <span class="tech-tag">Arrays</span>
+                        <span class="tech-tag">JSON</span>
+                        <span class="tech-tag">DOM Manipulation</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Display employee list</li>
+                        <li>Sort by name/age/role</li>
+                        <li>Search functionality</li>
+                        <li>JSON data handling</li>
+                        <li>Local storage integration</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openEmployeeDirectoryDemo()">Live Demo</button>
+                    <a href="#" class="demo-btn secondary">Source Code</a>
+                </div>
+            </div>
+
+            <!-- Project 7: Weather App - DAY 3-7 -->
+            <div class="project-card" data-category="javascript api">
+                <div class="project-header">
+                    <h3>Weather App</h3>
+                    <span class="project-status completed">Completed</span>
+                </div>
+                
+                <div class="project-preview">
+                    <div class="preview-container">
+                        <div class="weather-preview">
+                            <div class="preview-weather">
+                                <strong>25°C</strong>
+                                <span>Sunny</span>
+                            </div>
+                            <button class="mini-btn" onclick="showWeatherPreview()">Check Weather</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-description">
+                    <p>A real-time weather application fetching data from external APIs with beautiful UI and location detection.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">API</span>
+                        <span class="tech-tag">Fetch</span>
+                        <span class="tech-tag">Async/Await</span>
+                        <span class="tech-tag">Error Handling</span>
+                    </div>
+                </div>
+                
+                <div class="project-features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Real-time weather data</li>
+                        <li>City search</li>
+                        <li>Temperature units toggle</li>
+                        <li>Weather icons</li>
+                        <li>Error handling</li>
+                    </ul>
+                </div>
+                
+                <div class="project-actions">
+                    <button class="demo-btn primary" onclick="openWeatherAppDemo()">Live Demo</button>
+                    <a href="#" class="demo-btn secondary">Source Code</a>
+                </div>
+            </div>
         </section>
 
-        <!-- Full Demos Section (Hidden by default) -->
+        <!-- Full Demos Section -->
         <section id="full-demos" style="display: none;">
-            <!-- Quote Generator Full Demo -->
+            <!-- Quote Generator Demo -->
             <div id="quote-demo-full" class="full-demo">
                 <div class="demo-header">
                     <h3>Quote Generator - Live Demo</h3>
@@ -314,7 +403,7 @@
                 </div>
             </div>
             
-            <!-- JavaScript Playground Full Demo -->
+            <!-- JavaScript Playground Demo -->
             <div id="playground-demo-full" class="full-demo">
                 <div class="demo-header">
                     <h3>JavaScript Playground - Live Demo</h3>
@@ -337,7 +426,7 @@
                 </div>
             </div>
 
-            <!-- Calculator Full Demo -->
+            <!-- Calculator Demo -->
             <div id="calculator-demo-full" class="full-demo">
                 <div class="demo-header">
                     <h3>Calculator App - Live Demo</h3>
@@ -374,7 +463,7 @@
                 </div>
             </div>
 
-            <!-- Temperature Converter Full Demo -->
+            <!-- Temperature Converter Demo -->
             <div id="temp-converter-demo-full" class="full-demo">
                 <div class="demo-header">
                     <h3>Temperature Converter - Live Demo</h3>
@@ -403,9 +492,95 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Employee Directory Demo -->
+            <div id="employee-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>Employee Directory - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
+                </div>
+                <div class="demo-content">
+                    <div class="employee-directory-demo">
+                        <div class="directory-controls">
+                            <input type="text" id="employeeSearch" placeholder="Search employees..." class="search-input">
+                            <select id="sortSelect" class="sort-select">
+                                <option value="name">Sort by Name</option>
+                                <option value="role">Sort by Role</option>
+                                <option value="experience">Sort by Experience</option>
+                            </select>
+                            <button id="addEmployeeBtn" class="add-btn">+ Add Employee</button>
+                        </div>
+                        
+                        <div id="employeeStats" class="employee-stats">
+                            <!-- Stats will be populated by JavaScript -->
+                        </div>
+                        
+                        <div id="employeesContainer" class="employees-container">
+                            <!-- Employees will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather App Demo -->
+            <div id="weather-demo-full" class="full-demo">
+                <div class="demo-header">
+                    <h3>Weather App - Live Demo</h3>
+                    <button class="close-demo" onclick="closeDemos()">×</button>
+                </div>
+                <div class="demo-content">
+                    <div class="weather-app-demo">
+                        <div class="weather-search">
+                            <input type="text" id="weatherSearch" placeholder="Enter city name..." class="search-input">
+                            <button id="searchWeatherBtn" class="search-btn">Search</button>
+                            <button id="useLocationBtn" class="location-btn">📍 Use My Location</button>
+                        </div>
+                        
+                        <div class="weather-display">
+                            <div id="weatherLoading" class="weather-loading" style="display: none;">
+                                <div class="loading-spinner"></div>
+                                <p>Loading weather data...</p>
+                            </div>
+                            
+                            <div id="weatherContent" class="weather-content" style="display: none;">
+                                <div class="weather-header">
+                                    <h3 id="weatherCity">--</h3>
+                                    <button id="toggleUnits" class="units-btn">°C / °F</button>
+                                </div>
+                                <div class="weather-main">
+                                    <div class="weather-icon">
+                                        <span id="weatherEmoji">🌤️</span>
+                                    </div>
+                                    <div class="weather-temp">
+                                        <span id="weatherTemperature">--</span>
+                                        <span id="weatherDescription">--</span>
+                                    </div>
+                                </div>
+                                <div class="weather-details">
+                                    <div class="weather-detail">
+                                        <span>💨 Wind</span>
+                                        <span id="weatherWind">-- m/s</span>
+                                    </div>
+                                    <div class="weather-detail">
+                                        <span>💧 Humidity</span>
+                                        <span id="weatherHumidity">--%</span>
+                                    </div>
+                                    <div class="weather-detail">
+                                        <span>🔆 Pressure</span>
+                                        <span id="weatherPressure">-- hPa</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="weatherError" class="weather-error" style="display: none;">
+                                <p>❌ Unable to fetch weather data. Please try again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Skills Section -->
         <section id="skills">
             <h2>Technologies I Use</h2>
             <div class="skills-grid">
@@ -442,7 +617,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>© 2024 Mohammed Yesfi Daimoussi. All rights reserved.</p>
         <p>Email: <a href="mailto:mohammedyesfid@gmail.com">mohammedyesfid@gmail.com</a></p>
