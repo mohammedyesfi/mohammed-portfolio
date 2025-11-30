@@ -383,40 +383,10 @@ function initializeContactForm() {
     new ContactForm();
 }
 
-// === ENHANCED PROJECTS PAGE FUNCTIONALITY === //
+// === PROJECTS DEMO FUNCTIONALITY === //
 
 // Demo modal management
 let currentDemo = null;
-
-// FIXED: Enhanced closeDemos function
-function closeDemos() {
-    const fullDemos = document.getElementById('full-demos');
-    const demos = document.querySelectorAll('.full-demo');
-    
-    if (fullDemos) {
-        fullDemos.style.display = 'none';
-    }
-    
-    // Hide all individual demo modals
-    demos.forEach(demo => {
-        demo.style.display = 'none';
-    });
-    
-    currentDemo = null;
-    console.log("🔒 All demos closed");
-}
-
-// FIXED: Enhanced click outside handler
-document.addEventListener('click', function(event) {
-    const fullDemos = document.getElementById('full-demos');
-    
-    if (fullDemos && fullDemos.style.display === 'block') {
-        // Check if click is on the overlay background (not the modal content)
-        if (event.target === fullDemos) {
-            closeDemos();
-        }
-    }
-});
 
 // Modal centering function
 function centerModal() {
@@ -431,7 +401,35 @@ function centerModal() {
     });
 }
 
-// Quote Generator Demo
+// Enhanced closeDemos function
+function closeDemos() {
+    const fullDemos = document.getElementById('full-demos');
+    const demos = document.querySelectorAll('.full-demo');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'none';
+    }
+    
+    demos.forEach(demo => {
+        demo.style.display = 'none';
+    });
+    
+    currentDemo = null;
+    console.log("🔒 All demos closed");
+}
+
+// Enhanced click outside handler
+document.addEventListener('click', function(event) {
+    const fullDemos = document.getElementById('full-demos');
+    
+    if (fullDemos && fullDemos.style.display === 'block') {
+        if (event.target === fullDemos) {
+            closeDemos();
+        }
+    }
+});
+
+// === PROJECT 1: QUOTE GENERATOR === //
 function openQuoteDemo() {
     currentDemo = 'quote';
     const fullDemos = document.getElementById('full-demos');
@@ -439,48 +437,30 @@ function openQuoteDemo() {
     const playgroundDemo = document.getElementById('playground-demo-full');
     const calculatorDemo = document.getElementById('calculator-demo-full');
     const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
     
     if (fullDemos) {
         fullDemos.style.display = 'block';
-        setTimeout(() => {
-            centerModal();
-        }, 10);
+        setTimeout(() => { centerModal(); }, 10);
     }
     if (quoteDemo) quoteDemo.style.display = 'block';
     if (playgroundDemo) playgroundDemo.style.display = 'none';
     if (calculatorDemo) calculatorDemo.style.display = 'none';
     if (tempDemo) tempDemo.style.display = 'none';
+    if (employeeDemo) employeeDemo.style.display = 'none';
+    if (weatherDemo) weatherDemo.style.display = 'none';
     
     initializeQuoteDemo();
 }
 
 function initializeQuoteDemo() {
     const fullQuotes = [
-        {
-            text: "The only way to do great work is to love what you do.",
-            author: "Steve Jobs",
-            category: "work"
-        },
-        {
-            text: "Innovation distinguishes between a leader and a follower.",
-            author: "Steve Jobs", 
-            category: "leadership"
-        },
-        {
-            text: "Your time is limited, so don't waste it living someone else's life.",
-            author: "Steve Jobs",
-            category: "life"
-        },
-        {
-            text: "The future belongs to those who believe in the beauty of their dreams.",
-            author: "Eleanor Roosevelt",
-            category: "dreams"
-        },
-        {
-            text: "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-            author: "Winston Churchill",
-            category: "perseverance"
-        }
+        { text: "The only way to do great work is to love what you do.", author: "Steve Jobs", category: "work" },
+        { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs", category: "leadership" },
+        { text: "Your time is limited, so don't waste it living someone else's life.", author: "Steve Jobs", category: "life" },
+        { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt", category: "dreams" },
+        { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill", category: "perseverance" }
     ];
 
     let quoteCount = 0;
@@ -502,17 +482,15 @@ function initializeQuoteDemo() {
         if (quoteCountElement) quoteCountElement.textContent = quoteCount;
     }
 
-    // Add event listener
     const newQuoteBtn = document.getElementById('full-new-quote');
     if (newQuoteBtn) {
         newQuoteBtn.addEventListener('click', displayFullQuote);
     }
 
-    // Display first quote
     displayFullQuote();
 }
 
-// JavaScript Playground Demo
+// === PROJECT 2: JAVASCRIPT PLAYGROUND === //
 function openPlaygroundDemo() {
     currentDemo = 'playground';
     const fullDemos = document.getElementById('full-demos');
@@ -520,17 +498,19 @@ function openPlaygroundDemo() {
     const playgroundDemo = document.getElementById('playground-demo-full');
     const calculatorDemo = document.getElementById('calculator-demo-full');
     const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
     
     if (fullDemos) {
         fullDemos.style.display = 'block';
-        setTimeout(() => {
-            centerModal();
-        }, 10);
+        setTimeout(() => { centerModal(); }, 10);
     }
     if (quoteDemo) quoteDemo.style.display = 'none';
     if (playgroundDemo) playgroundDemo.style.display = 'block';
     if (calculatorDemo) calculatorDemo.style.display = 'none';
     if (tempDemo) tempDemo.style.display = 'none';
+    if (employeeDemo) employeeDemo.style.display = 'none';
+    if (weatherDemo) weatherDemo.style.display = 'none';
     
     initializePlaygroundDemo();
 }
@@ -538,7 +518,6 @@ function openPlaygroundDemo() {
 function initializePlaygroundDemo() {
     let fullClickCount = 0;
 
-    // Alert Button
     const fullAlertButton = document.getElementById('full-alert-button');
     if (fullAlertButton) {
         fullAlertButton.addEventListener('click', function() {
@@ -546,7 +525,6 @@ function initializePlaygroundDemo() {
         });
     }
 
-    // Change Text Button
     const fullChangeButton = document.getElementById('full-change-button');
     if (fullChangeButton) {
         fullChangeButton.addEventListener('click', function() {
@@ -563,22 +541,16 @@ function initializePlaygroundDemo() {
         });
     }
 
-    // Toggle Button
     const fullToggleButton = document.getElementById('full-toggle-button');
     if (fullToggleButton) {
         fullToggleButton.addEventListener('click', function() {
             const secretMessage = document.getElementById('full-secret-message');
             if (secretMessage) {
-                if (secretMessage.style.display === "none") {
-                    secretMessage.style.display = "block";
-                } else {
-                    secretMessage.style.display = "none";
-                }
+                secretMessage.style.display = secretMessage.style.display === "none" ? "block" : "none";
             }
         });
     }
 
-    // Counter Button
     const fullCounterButton = document.getElementById('full-counter-button');
     if (fullCounterButton) {
         fullCounterButton.addEventListener('click', function() {
@@ -586,8 +558,6 @@ function initializePlaygroundDemo() {
             const counterElement = document.getElementById('full-click-count');
             if (counterElement) {
                 counterElement.textContent = fullClickCount;
-                
-                // Change color after 5 clicks
                 if (fullClickCount >= 5) {
                     counterElement.style.color = "var(--secondary)";
                 }
@@ -596,7 +566,19 @@ function initializePlaygroundDemo() {
     }
 }
 
-// Calculator Demo
+// Mini preview demos for project cards
+function showMiniAlert() {
+    alert("This is a mini preview! Click 'Live Demo' for the full interactive experience!");
+}
+
+function changeMiniText() {
+    const messages = ["Great!", "Awesome!", "Cool!"];
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    const miniMessage = document.getElementById('mini-message');
+    if (miniMessage) miniMessage.textContent = randomMessage;
+}
+
+// === PROJECT 3: CALCULATOR APP === //
 function openCalculatorDemo() {
     currentDemo = 'calculator';
     const fullDemos = document.getElementById('full-demos');
@@ -604,17 +586,19 @@ function openCalculatorDemo() {
     const playgroundDemo = document.getElementById('playground-demo-full');
     const calculatorDemo = document.getElementById('calculator-demo-full');
     const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
     
     if (fullDemos) {
         fullDemos.style.display = 'block';
-        setTimeout(() => {
-            centerModal();
-        }, 10);
+        setTimeout(() => { centerModal(); }, 10);
     }
     if (quoteDemo) quoteDemo.style.display = 'none';
     if (playgroundDemo) playgroundDemo.style.display = 'none';
     if (calculatorDemo) calculatorDemo.style.display = 'block';
     if (tempDemo) tempDemo.style.display = 'none';
+    if (employeeDemo) employeeDemo.style.display = 'none';
+    if (weatherDemo) weatherDemo.style.display = 'none';
     
     initializeCalculator();
 }
@@ -653,7 +637,6 @@ function deleteLast() {
 
 function calculateResult() {
     try {
-        // Replace × with * for evaluation
         const expression = currentDisplay.replace(/×/g, '*');
         currentDisplay = eval(expression).toString();
     } catch (error) {
@@ -664,13 +647,17 @@ function calculateResult() {
 }
 
 function initializeCalculator() {
-    // Reset calculator state
     currentDisplay = '0';
     shouldResetDisplay = false;
     updateCalculatorDisplay();
 }
 
-// Temperature Converter Demo
+// === PROJECT 4: TODO LIST APP === //
+function openTodoDemo() {
+    alert("Todo List demo coming soon! This shows progressive enhancement.");
+}
+
+// === PROJECT 5: TEMPERATURE CONVERTER (DAY 1) === //
 function openTempConverterDemo() {
     currentDemo = 'temp-converter';
     const fullDemos = document.getElementById('full-demos');
@@ -678,17 +665,19 @@ function openTempConverterDemo() {
     const playgroundDemo = document.getElementById('playground-demo-full');
     const calculatorDemo = document.getElementById('calculator-demo-full');
     const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
     
     if (fullDemos) {
         fullDemos.style.display = 'block';
-        setTimeout(() => {
-            centerModal();
-        }, 10);
+        setTimeout(() => { centerModal(); }, 10);
     }
     if (quoteDemo) quoteDemo.style.display = 'none';
     if (playgroundDemo) playgroundDemo.style.display = 'none';
     if (calculatorDemo) calculatorDemo.style.display = 'none';
     if (tempDemo) tempDemo.style.display = 'block';
+    if (employeeDemo) employeeDemo.style.display = 'none';
+    if (weatherDemo) weatherDemo.style.display = 'none';
     
     initializeTempConverterDemo();
 }
@@ -698,7 +687,6 @@ function initializeTempConverterDemo() {
     const resultDiv = document.getElementById('resultModal');
     const convertButtons = document.querySelectorAll('#temp-converter-demo-full .convert-btn');
 
-    // Clear previous results when opening
     if (tempInput) tempInput.value = '';
     if (resultDiv) resultDiv.innerHTML = '';
 
@@ -709,8 +697,7 @@ function initializeTempConverterDemo() {
             }
 
             const numericValue = parseFloat(value);
-            let result;
-            let formula;
+            let result, formula;
 
             if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
                 result = (numericValue * 9/5) + 32;
@@ -722,24 +709,17 @@ function initializeTempConverterDemo() {
                 throw new Error('Invalid conversion type');
             }
 
-            const roundedResult = Math.round(result * 100) / 100;
-
             return {
-                value: roundedResult,
+                value: Math.round(result * 100) / 100,
                 formula: formula
             };
-
         } catch (error) {
             throw error;
         }
     };
 
     const displayResult = (originalValue, fromUnit, toUnit, convertedValue, formula) => {
-        const unitSymbols = {
-            celsius: '°C',
-            fahrenheit: '°F'
-        };
-
+        const unitSymbols = { celsius: '°C', fahrenheit: '°F' };
         const message = `
             <div class="success-message">
                 <strong>${originalValue}${unitSymbols[fromUnit]} = ${convertedValue}${unitSymbols[toUnit]}</strong>
@@ -747,7 +727,6 @@ function initializeTempConverterDemo() {
                 <small>Formula: ${formula}</small>
             </div>
         `;
-
         if (resultDiv) resultDiv.innerHTML = message;
     };
 
@@ -757,7 +736,6 @@ function initializeTempConverterDemo() {
 
     const handleConversion = (fromUnit, toUnit) => {
         const inputValue = tempInput ? tempInput.value.trim() : '';
-
         try {
             const conversion = convertTemperature(inputValue, fromUnit, toUnit);
             displayResult(inputValue, fromUnit, toUnit, conversion.value, conversion.formula);
@@ -766,7 +744,6 @@ function initializeTempConverterDemo() {
         }
     };
 
-    // Add event listeners to modal buttons
     if (convertButtons) {
         convertButtons.forEach(button => {
             button.addEventListener('click', () => {
@@ -777,7 +754,6 @@ function initializeTempConverterDemo() {
         });
     }
 
-    // Enter key support
     if (tempInput) {
         tempInput.addEventListener('keypress', (event) => {
             if (event.key === 'Enter') {
@@ -792,23 +768,6 @@ function initializeTempConverterDemo() {
     }
 }
 
-function openTodoDemo() {
-    alert("Todo List demo coming soon! This shows progressive enhancement.");
-}
-
-// Mini preview demos for project cards
-function showMiniAlert() {
-    alert("This is a mini preview! Click 'Live Demo' for the full interactive experience!");
-}
-
-function changeMiniText() {
-    const messages = ["Great!", "Awesome!", "Cool!"];
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    const miniMessage = document.getElementById('mini-message');
-    if (miniMessage) miniMessage.textContent = randomMessage;
-}
-
-// Temperature Converter Preview for project card
 function convertTempPreview(type) {
     if (type === 'c-to-f') {
         alert("25°C = 77°F\n\nIn the full demo, you can convert any temperature!");
@@ -817,79 +776,506 @@ function convertTempPreview(type) {
     }
 }
 
-// Initialize projects page
+// === PROJECT 6: EMPLOYEE DIRECTORY (DAY 2) === //
+const employees = [
+    {
+        id: 1, name: "Mohammed Yesfi", role: "Frontend Developer", department: "Engineering",
+        experience: 2, email: "mohammed@company.com", skills: ["JavaScript", "HTML", "CSS", "React"],
+        isActive: true, joinDate: "2023-01-15"
+    },
+    {
+        id: 2, name: "Sarah Johnson", role: "UI/UX Designer", department: "Design",
+        experience: 3, email: "sarah@company.com", skills: ["Figma", "Adobe XD", "User Research", "Prototyping"],
+        isActive: true, joinDate: "2022-08-20"
+    },
+    {
+        id: 3, name: "Alex Chen", role: "Backend Developer", department: "Engineering",
+        experience: 4, email: "alex@company.com", skills: ["Node.js", "Python", "MongoDB", "API Design"],
+        isActive: true, joinDate: "2021-03-10"
+    },
+    {
+        id: 4, name: "Emma Davis", role: "Project Manager", department: "Management",
+        experience: 5, email: "emma@company.com", skills: ["Agile", "Scrum", "Team Leadership", "Client Communication"],
+        isActive: true, joinDate: "2020-11-05"
+    },
+    {
+        id: 5, name: "Mike Wilson", role: "DevOps Engineer", department: "Engineering",
+        experience: 3, email: "mike@company.com", skills: ["Docker", "AWS", "CI/CD", "Linux"],
+        isActive: false, joinDate: "2022-05-15"
+    }
+];
+
+function openEmployeeDirectoryDemo() {
+    currentDemo = 'employee-directory';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => { centerModal(); }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    if (tempDemo) tempDemo.style.display = 'none';
+    if (employeeDemo) employeeDemo.style.display = 'block';
+    if (weatherDemo) weatherDemo.style.display = 'none';
+    
+    initializeEmployeeDirectory();
+}
+
+function initializeEmployeeDirectory() {
+    let currentEmployees = loadEmployeesFromStorage();
+    if (!currentEmployees.length) {
+        currentEmployees = [...employees];
+        saveEmployeesToStorage(currentEmployees);
+    }
+    
+    displayEmployees(currentEmployees);
+    setupEmployeeDirectoryEvents();
+    updateEmployeeStats(currentEmployees);
+}
+
+function loadEmployeesFromStorage() {
+    try {
+        const stored = localStorage.getItem('portfolioEmployees');
+        return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+        console.error('Error loading employees:', error);
+        return [];
+    }
+}
+
+function saveEmployeesToStorage(employeesArray) {
+    try {
+        localStorage.setItem('portfolioEmployees', JSON.stringify(employeesArray));
+    } catch (error) {
+        console.error('Error saving employees:', error);
+    }
+}
+
+function displayEmployees(employeesArray) {
+    const container = document.getElementById('employeesContainer');
+    if (!container) return;
+    
+    const employeesHTML = employeesArray.map(employee => `
+        <div class="employee-card" data-id="${employee.id}">
+            <div class="employee-header">
+                <h4>${employee.name}</h4>
+                <span class="employee-status ${employee.isActive ? 'active' : 'inactive'}">
+                    ${employee.isActive ? '🟢 Active' : '🔴 Inactive'}
+                </span>
+            </div>
+            <div class="employee-details">
+                <p><strong>Role:</strong> ${employee.role}</p>
+                <p><strong>Department:</strong> ${employee.department}</p>
+                <p><strong>Experience:</strong> ${employee.experience} years</p>
+                <p><strong>Email:</strong> ${employee.email}</p>
+            </div>
+            <div class="employee-skills">
+                <strong>Skills:</strong>
+                ${employee.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+            </div>
+            <div class="employee-actions">
+                <button class="action-btn edit-btn" onclick="editEmployee(${employee.id})">✏️ Edit</button>
+                <button class="action-btn delete-btn" onclick="deleteEmployee(${employee.id})">🗑️ Delete</button>
+            </div>
+        </div>
+    `).join('');
+    
+    container.innerHTML = employeesHTML;
+}
+
+function updateEmployeeStats(employeesArray) {
+    const statsContainer = document.getElementById('employeeStats');
+    if (!statsContainer) return;
+    
+    const totalEmployees = employeesArray.length;
+    const activeEmployees = employeesArray.filter(emp => emp.isActive).length;
+    const totalExperience = employeesArray.reduce((sum, emp) => sum + emp.experience, 0);
+    const avgExperience = totalExperience / totalEmployees;
+    
+    statsContainer.innerHTML = `
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">${totalEmployees}</span>
+                <span class="stat-label">Total Employees</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">${activeEmployees}</span>
+                <span class="stat-label">Active</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">${Math.round(avgExperience * 10) / 10}</span>
+                <span class="stat-label">Avg. Experience (years)</span>
+            </div>
+        </div>
+    `;
+}
+
+function setupEmployeeDirectoryEvents() {
+    const searchInput = document.getElementById('employeeSearch');
+    const sortSelect = document.getElementById('sortSelect');
+    const addButton = document.getElementById('addEmployeeBtn');
+    
+    if (searchInput) searchInput.addEventListener('input', handleEmployeeSearch);
+    if (sortSelect) sortSelect.addEventListener('change', handleEmployeeSort);
+    if (addButton) addButton.addEventListener('click', addNewEmployee);
+}
+
+function handleEmployeeSearch(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const currentEmployees = loadEmployeesFromStorage();
+    
+    const filteredEmployees = currentEmployees.filter(employee =>
+        employee.name.toLowerCase().includes(searchTerm) ||
+        employee.role.toLowerCase().includes(searchTerm) ||
+        employee.department.toLowerCase().includes(searchTerm) ||
+        employee.skills.some(skill => skill.toLowerCase().includes(searchTerm))
+    );
+    
+    displayEmployees(filteredEmployees);
+    updateEmployeeStats(filteredEmployees);
+}
+
+function handleEmployeeSort(event) {
+    const sortBy = event.target.value;
+    const currentEmployees = loadEmployeesFromStorage();
+    
+    const sortedEmployees = [...currentEmployees].sort((a, b) => {
+        if (sortBy === 'name') return a.name.localeCompare(b.name);
+        if (sortBy === 'role') return a.role.localeCompare(b.role);
+        if (sortBy === 'experience') return b.experience - a.experience;
+        return 0;
+    });
+    
+    displayEmployees(sortedEmployees);
+}
+
+function addNewEmployee() {
+    const newEmployee = {
+        id: Date.now(),
+        name: "New Employee",
+        role: "New Role",
+        department: "New Department",
+        experience: 1,
+        email: "new@company.com",
+        skills: ["New Skill"],
+        isActive: true,
+        joinDate: new Date().toISOString().split('T')[0]
+    };
+    
+    const currentEmployees = loadEmployeesFromStorage();
+    currentEmployees.push(newEmployee);
+    saveEmployeesToStorage(currentEmployees);
+    displayEmployees(currentEmployees);
+    updateEmployeeStats(currentEmployees);
+    
+    alert("New employee added! In a real app, you'd use a form to input details.");
+}
+
+function editEmployee(employeeId) {
+    alert(`Edit employee ${employeeId} - This would open an edit form in a real application.`);
+}
+
+function deleteEmployee(employeeId) {
+    if (confirm('Are you sure you want to delete this employee?')) {
+        const currentEmployees = loadEmployeesFromStorage();
+        const updatedEmployees = currentEmployees.filter(emp => emp.id !== employeeId);
+        saveEmployeesToStorage(updatedEmployees);
+        displayEmployees(updatedEmployees);
+        updateEmployeeStats(updatedEmployees);
+    }
+}
+
+function showEmployeePreview() {
+    alert("👥 Employee Directory Preview!\n\nThis demonstrates:\n• Object arrays\n• JSON handling\n• Dynamic filtering\n• Local storage");
+}
+
+// === PROJECT 7: WEATHER APP (DAY 3-7) === //
+function openWeatherAppDemo() {
+    currentDemo = 'weather-app';
+    const fullDemos = document.getElementById('full-demos');
+    const quoteDemo = document.getElementById('quote-demo-full');
+    const playgroundDemo = document.getElementById('playground-demo-full');
+    const calculatorDemo = document.getElementById('calculator-demo-full');
+    const tempDemo = document.getElementById('temp-converter-demo-full');
+    const employeeDemo = document.getElementById('employee-demo-full');
+    const weatherDemo = document.getElementById('weather-demo-full');
+    
+    if (fullDemos) {
+        fullDemos.style.display = 'block';
+        setTimeout(() => { centerModal(); }, 10);
+    }
+    if (quoteDemo) quoteDemo.style.display = 'none';
+    if (playgroundDemo) playgroundDemo.style.display = 'none';
+    if (calculatorDemo) calculatorDemo.style.display = 'none';
+    if (tempDemo) tempDemo.style.display = 'none';
+    if (employeeDemo) employeeDemo.style.display = 'none';
+    if (weatherDemo) weatherDemo.style.display = 'block';
+    
+    initializeWeatherApp();
+}
+
+let isCelsius = true;
+
+async function initializeWeatherApp() {
+    const searchInput = document.getElementById('weatherSearch');
+    const searchBtn = document.getElementById('searchWeatherBtn');
+    const locationBtn = document.getElementById('useLocationBtn');
+    const toggleUnits = document.getElementById('toggleUnits');
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', handleWeatherSearch);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleWeatherSearch();
+        });
+    }
+
+    if (locationBtn) {
+        locationBtn.addEventListener('click', handleLocationWeather);
+    }
+
+    if (toggleUnits) {
+        toggleUnits.addEventListener('click', toggleTemperatureUnits);
+    }
+
+    // Load default city weather
+    fetchWeatherData('London');
+}
+
+async function handleWeatherSearch() {
+    const searchInput = document.getElementById('weatherSearch');
+    const city = searchInput.value.trim();
+    
+    if (city) {
+        await fetchWeatherData(city);
+    } else {
+        showWeatherError('Please enter a city name');
+    }
+}
+
+async function handleLocationWeather() {
+    if (!navigator.geolocation) {
+        showWeatherError('Geolocation is not supported by your browser');
+        return;
+    }
+
+    showWeatherLoading();
+    
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+            const { latitude, longitude } = position.coords;
+            await fetchWeatherByCoords(latitude, longitude);
+        },
+        (error) => {
+            showWeatherError('Unable to retrieve your location');
+            console.error('Geolocation error:', error);
+        }
+    );
+}
+
+async function fetchWeatherData(city) {
+    showWeatherLoading();
+    
+    try {
+        // Using OpenWeatherMap API (you'll need to replace with your API key)
+        const API_KEY = 'demo_key'; // Replace with actual API key
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+        );
+        
+        if (!response.ok) {
+            throw new Error('City not found');
+        }
+        
+        const data = await response.json();
+        displayWeatherData(data);
+        
+    } catch (error) {
+        console.error('Weather API error:', error);
+        showWeatherError('City not found. Please try again.');
+    }
+}
+
+async function fetchWeatherByCoords(lat, lon) {
+    try {
+        const API_KEY = 'demo_key'; // Replace with actual API key
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+        );
+        
+        if (!response.ok) {
+            throw new Error('Weather data not available');
+        }
+        
+        const data = await response.json();
+        displayWeatherData(data);
+        
+    } catch (error) {
+        console.error('Weather API error:', error);
+        showWeatherError('Unable to fetch weather data for your location');
+    }
+}
+
+function displayWeatherData(data) {
+    const cityElement = document.getElementById('weatherCity');
+    const tempElement = document.getElementById('weatherTemperature');
+    const descElement = document.getElementById('weatherDescription');
+    const windElement = document.getElementById('weatherWind');
+    const humidityElement = document.getElementById('weatherHumidity');
+    const pressureElement = document.getElementById('weatherPressure');
+    const emojiElement = document.getElementById('weatherEmoji');
+
+    if (cityElement) cityElement.textContent = `${data.name}, ${data.sys.country}`;
+    
+    let temperature = Math.round(data.main.temp);
+    if (!isCelsius) {
+        temperature = Math.round((temperature * 9/5) + 32);
+    }
+    
+    if (tempElement) tempElement.textContent = `${temperature}°${isCelsius ? 'C' : 'F'}`;
+    if (descElement) descElement.textContent = data.weather[0].description;
+    if (windElement) windElement.textContent = `${data.wind.speed} m/s`;
+    if (humidityElement) humidityElement.textContent = `${data.main.humidity}%`;
+    if (pressureElement) pressureElement.textContent = `${data.main.pressure} hPa`;
+    
+    // Set weather emoji
+    const weatherMain = data.weather[0].main.toLowerCase();
+    const emoji = getWeatherEmoji(weatherMain);
+    if (emojiElement) emojiElement.textContent = emoji;
+
+    showWeatherContent();
+}
+
+function getWeatherEmoji(weather) {
+    const emojiMap = {
+        'clear': '☀️',
+        'clouds': '☁️',
+        'rain': '🌧️',
+        'drizzle': '🌦️',
+        'thunderstorm': '⛈️',
+        'snow': '❄️',
+        'mist': '🌫️',
+        'smoke': '💨',
+        'haze': '🌫️',
+        'dust': '💨',
+        'fog': '🌫️',
+        'sand': '💨',
+        'ash': '💨',
+        'squall': '💨',
+        'tornado': '🌪️'
+    };
+    
+    return emojiMap[weather] || '🌤️';
+}
+
+function toggleTemperatureUnits() {
+    isCelsius = !isCelsius;
+    const toggleBtn = document.getElementById('toggleUnits');
+    const tempElement = document.getElementById('weatherTemperature');
+    
+    if (toggleBtn) {
+        toggleBtn.textContent = isCelsius ? '°C / °F' : '°F / °C';
+    }
+    
+    // Re-fetch data with new units
+    const cityElement = document.getElementById('weatherCity');
+    if (cityElement && cityElement.textContent !== '--') {
+        const city = cityElement.textContent.split(',')[0];
+        fetchWeatherData(city);
+    }
+}
+
+function showWeatherLoading() {
+    const loading = document.getElementById('weatherLoading');
+    const content = document.getElementById('weatherContent');
+    const error = document.getElementById('weatherError');
+    
+    if (loading) loading.style.display = 'block';
+    if (content) content.style.display = 'none';
+    if (error) error.style.display = 'none';
+}
+
+function showWeatherContent() {
+    const loading = document.getElementById('weatherLoading');
+    const content = document.getElementById('weatherContent');
+    const error = document.getElementById('weatherError');
+    
+    if (loading) loading.style.display = 'none';
+    if (content) content.style.display = 'block';
+    if (error) error.style.display = 'none';
+}
+
+function showWeatherError(message) {
+    const loading = document.getElementById('weatherLoading');
+    const content = document.getElementById('weatherContent');
+    const error = document.getElementById('weatherError');
+    
+    if (loading) loading.style.display = 'none';
+    if (content) content.style.display = 'none';
+    if (error) {
+        error.style.display = 'block';
+        error.innerHTML = `<p>❌ ${message}</p>`;
+    }
+}
+
+function showWeatherPreview() {
+    alert("🌤️ Weather App Preview!\n\nThis demonstrates:\n• API integration\n• Async/await\n• Geolocation\n• Error handling");
+}
+
+// === INITIALIZE EVERYTHING === //
 function initializeProjectsPage() {
     console.log("🎯 Projects page initialized with full demos!");
-    
-    // Ensure all demos start closed
     closeDemos();
     
-    // Add keyboard support for demos
     document.addEventListener('keydown', function(event) {
-        // Close demo with Escape key
         if (event.key === 'Escape' && currentDemo) {
             closeDemos();
             return;
         }
         
         if (currentDemo === 'calculator') {
-            // Calculator keyboard support
-            if (event.key >= '0' && event.key <= '9') {
-                appendToDisplay(event.key);
-            } else if (event.key === '+') {
-                appendToDisplay('+');
-            } else if (event.key === '-') {
-                appendToDisplay('-');
-            } else if (event.key === '*') {
-                appendToDisplay('×');
-            } else if (event.key === '/') {
-                appendToDisplay('/');
-            } else if (event.key === '.') {
-                appendToDisplay('.');
-            } else if (event.key === 'Enter' || event.key === '=') {
-                calculateResult();
-            } else if (event.key === 'Escape') {
-                clearCalculator();
-            } else if (event.key === 'Backspace') {
-                deleteLast();
-            }
+            if (event.key >= '0' && event.key <= '9') appendToDisplay(event.key);
+            else if (event.key === '+') appendToDisplay('+');
+            else if (event.key === '-') appendToDisplay('-');
+            else if (event.key === '*') appendToDisplay('×');
+            else if (event.key === '/') appendToDisplay('/');
+            else if (event.key === '.') appendToDisplay('.');
+            else if (event.key === 'Enter' || event.key === '=') calculateResult();
+            else if (event.key === 'Escape') clearCalculator();
+            else if (event.key === 'Backspace') deleteLast();
         }
     });
 }
 
-// === INITIALIZE EVERYTHING === //
 document.addEventListener('DOMContentLoaded', function() {
     console.log("📄 Page loaded, initializing everything...");
     
-    // Initialize theme (works on both pages)
     initializeTheme();
     
-    // Initialize dark mode toggle (works on both pages)
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', toggleTheme);
     }
     
-    // Check which page we're on and initialize accordingly
-    const isProjectsPage = window.location.pathname.includes('projects.html') || 
-                          document.getElementById('projects-grid');
+    const isProjectsPage = window.location.pathname.includes('projects.html') || document.getElementById('projects-grid');
+    const isHomePage = window.location.pathname.includes('index.html') || window.location.pathname === '/' || document.getElementById('hobbies-container');
     
-    const isHomePage = window.location.pathname.includes('index.html') || 
-                      window.location.pathname === '/' ||
-                      document.getElementById('hobbies-container');
-    
-    // Initialize projects page features
-    if (isProjectsPage) {
-        initializeProjectsPage();
-    }
-    
-    // Initialize homepage features
+    if (isProjectsPage) initializeProjectsPage();
     if (isHomePage) {
         demonstrateLoops();
         displayHobbies();
         initializeContactForm();
     }
     
-    // Global keyboard shortcut
     document.addEventListener('keydown', function(event) {
         if (event.key === "a" || event.key === "A") {
             alert("🎊 Keyboard shortcuts working! Great job! 🎊");
